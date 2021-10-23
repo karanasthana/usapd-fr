@@ -33,10 +33,10 @@ export default function LoginPage(props) {
                 <div className='row'>
                     <div className='col-md-6 col-sm-12' style={{ padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
                         <div style={{ paddingTop: '10px', paddingBottom: '10px' }}>
-                            <h2><strong style={{ fontSize: '18px', fontFamily: 'fantasy' }}>CRYPTO CLAN</strong></h2>
+                            <h2><strong style={{ fontSize: '18px', fontFamily: 'fantasy' }}>USAPD</strong></h2>
                         </div>
                         <div>
-                            <h2 style={{ fontSize: '30px' }}>Crypto Trading just became a team effort</h2>
+                            <h2 style={{ fontSize: '30px' }}>US Air Pollution Dashboard</h2>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             <img src={'https://i.pinimg.com/originals/6b/1b/22/6b1b22573f9f3d4bba11a9fa5cb45652.png'} width={'80%'} height={'auto'} style={{maxHeight: '50vh'}} />
