@@ -49,7 +49,7 @@ export default function LoginPage(props) {
                             <h2 style={{ fontSize: '30px' }}>Crypto Trading just became a team effort</h2>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <img src={'https://i.pinimg.com/originals/6b/1b/22/6b1b22573f9f3d4bba11a9fa5cb45652.png'} width={'80%'} height={'auto'} />
+                            <img src={'https://i.pinimg.com/originals/6b/1b/22/6b1b22573f9f3d4bba11a9fa5cb45652.png'} width={'80%'} height={'auto'} alt={'test'} />
                         </div>
                     </div>
                     <div className='col-md-7 col-sm-12'  style={{ padding: '20px', backgroundColor: 'white', borderRadius: '10px', display: 'flex' }}>
