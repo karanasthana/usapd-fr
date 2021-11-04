@@ -33,19 +33,15 @@ def main():
                 row_to_consider = row
                 considered_duration = sampleDuration
 
-            if sampleDuration == '1 HOUR':
-                considered_duration = '1 HOUR'
+            if sampleDuration == '8-HR RUN AVG END HOUR':
+                considered_duration = '8-HR RUN AVG END HOUR'
                 row_to_consider = row
                 break
-
-            if sampleDuration == '8-HR RUN AVG END HOUR':
-                if considered_duration != '1 HOUR':
-                    considered_duration = '8-HR RUN AVG END HOUR'
-                    row_to_consider = row
-
-            if sampleDuration == '8-HR RUN AVG BEGIN HOUR':
-                if considered_duration != '1 HOUR':
-                    considered_duration = '8-HR RUN AVG BEGIN HOUR'
+            # invert priority of 8 hour over 1 hour
+            #
+            if sampleDuration == '1 HOUR':
+                if considered_duration != '8-HR RUN AVG END HOUR':
+                    considered_duration = '1 HOUR'
                     row_to_consider = row
 
         final_result.append(row_to_consider)
