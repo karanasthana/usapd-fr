@@ -1,19 +1,19 @@
 import pandas as pd
 
 def main():
-    no2_data = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/no2Temp.csv")
-    co2_data = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/co2Temp.csv")
-    so2_data = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/so2Temp.csv")
-    ozone_data = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/ozone_1.csv")
-    ozone_data_2 = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/ozone_2.csv")
+    no2_data = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/no2-observation-final.csv")
+    co_data = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/co-observation-final.csv")
+    so2_data = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/so2-observation-final.csv")
+    ozone_data = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/ozone-observation-final_1.csv")
+    ozone_data_2 = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/ozone-observation-final_2.csv")
 
     no2_text = '/Users/karanasthana/Personal/usapd-fr/Scripts/no2_sql.txt'
     so2_text = '/Users/karanasthana/Personal/usapd-fr/Scripts/so2_sql.txt'
-    co2_text = '/Users/karanasthana/Personal/usapd-fr/Scripts/co2_sql.txt'
+    co_text = '/Users/karanasthana/Personal/usapd-fr/Scripts/co_sql.txt'
     ozone_text = '/Users/karanasthana/Personal/usapd-fr/Scripts/ozone_sql.txt'
 
     createTextFile(no2_data, no2_text)
-    createTextFile(co2_data, co2_text)
+    createTextFile(co_data, co_text)
     createTextFile(so2_data, so2_text)
     createTextFile(ozone_data, ozone_text)
     createTextFile(ozone_data_2, ozone_text)
