@@ -11,8 +11,8 @@ def main():
     all_data = pd.concat([data1_ozone, data2_ozone, data3_ozone, data4_ozone, data5_ozone], axis = 0)
 
     # The generateUniqueCode functions return the data with county codes and site codes replaced in the data 
-    all_data = generateUniqueCountyCode(all_data)
     all_data = generateUniqueSiteCode(all_data)
+    all_data = generateUniqueCountyCode(all_data)
 
     print('Starting grouping of all data!')
 
@@ -56,7 +56,7 @@ def main():
 
     ##########CHANGE FILE NAME TO BE CREATED FOR EACH POLLUTANT##############
         
-    temp = open('O3Temp.csv', 'w')          #change file name for pollutant
+    temp = open('ozoneTemp.csv', 'w')          #change file name for pollutant
     header = ''
     for row in all_data[:1]:
         header += str(row) + ','
@@ -110,7 +110,7 @@ def generateUniqueSiteCode(all_data):
 
     print('found all Site Codes all Data!')
 
-    all_data['Site Code'] = siteCodes
+    all_data['Site Num'] = siteCodes
 
     print('replaced all Site Codes all Data!')
 

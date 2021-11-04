@@ -11,8 +11,8 @@ def main():
     all_data = pd.concat([data1_no2, data2_no2, data3_no2, data4_no2, data5_no2], axis = 0)
 
     # The generateUniqueCode functions return the data with county codes and site codes replaced in the data 
-    all_data = generateUniqueCountyCode(all_data)
     all_data = generateUniqueSiteCode(all_data)
+    all_data = generateUniqueCountyCode(all_data)
 
     print('Starting grouping of all data!')
 
@@ -112,7 +112,7 @@ def generateUniqueSiteCode(all_data):
     print('found all Site Codes all Data!')
 
     # import ipdb; ipdb.set_trace();
-    all_data['Site Code'] = siteCodes
+    all_data['Site Num'] = siteCodes
 
     print('replaced all Site Codes all Data!')
 
