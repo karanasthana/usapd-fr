@@ -13,8 +13,10 @@ def main():
     ozone_text = '/Users/karanasthana/Personal/usapd-fr/Scripts/ozone_sql.txt'
 
     createTextFile(no2_data, no2_text)
-    # createTextFile(ozone_data, ozone_text)
-    # createTextFile(ozone_data_2, ozone_text)
+    createTextFile(co2_data, co2_text)
+    createTextFile(so2_data, so2_text)
+    createTextFile(ozone_data, ozone_text)
+    createTextFile(ozone_data_2, ozone_text)
 
 def createTextFile(input_file, output_file):
     input_file = input_file[1:]
