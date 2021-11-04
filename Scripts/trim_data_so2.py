@@ -2,11 +2,11 @@ import pandas as pd
 import csv
 
 def main():
-    data1_no2 = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/Scripts/daily_42602_2016.csv")
-    data2_no2 = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/Scripts/daily_42602_2017.csv")
-    data3_no2 = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/Scripts/daily_42602_2018.csv")
-    data4_no2 = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/Scripts/daily_42602_2019.csv")
-    data5_no2 = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/Scripts/daily_42602_2020.csv")
+    data1_no2 = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/Scripts/daily_42401_2016.csv")
+    data2_no2 = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/Scripts/daily_42401_2017.csv")
+    data3_no2 = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/Scripts/daily_42401_2018.csv")
+    data4_no2 = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/Scripts/daily_42401_2019.csv")
+    data5_no2 = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/Scripts/daily_42401_2020.csv")
 
     all_data = pd.concat([data1_no2, data2_no2, data3_no2, data4_no2, data5_no2], axis = 0)
 
@@ -56,17 +56,17 @@ def main():
 
     ##########CHANGE FILE NAME TO BE CREATED FOR EACH POLLUTANT##############
         
-    temp = open('no2Temp.csv', 'w')          #change file name for pollutant
+    temp = open('so2Temp.csv', 'w')          #change file name for pollutant
     header = ''
     for row in all_data[:1]:
         header += str(row) + ','
     header = header[:-1]
     temp.write(header + '\n')
 
-    string_keys = [1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 20, 21, 22, 23]    #Columns to be inserted in the query as 'strings'
+    string_keys = [1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 20, 21, 22, 23]   #String values to be inserted in the query as 'strings'
 
     #15 lakh increments no2->ozone->so2->co2
-    i=0 #will start with multiples of 15lakh
+    i = 3000000 #will start with multiples of 15lakh
 
     for row in final_result:
         s = '{},'.format(i)

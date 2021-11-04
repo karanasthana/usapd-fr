@@ -9,42 +9,16 @@ def main():
     data5_ozone = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/Scripts/daily_44201_2020.csv")
 
     all_data = pd.concat([data1_ozone, data2_ozone, data3_ozone, data4_ozone, data5_ozone], axis = 0)
-    
-    print('Concatenated all Data!')
 
-    # import ipdb; ipdb.set_trace();
+    # The generateUniqueCode functions return the data with county codes and site codes replaced in the data 
+    all_data = generateUniqueCountyCode(all_data)
+    all_data = generateUniqueSiteCode(all_data)
 
-    state_array = all_data.iloc[:]['State Code']
-    county_array = all_data.iloc[:]['County Code']
-    site_array = all_data.iloc[:]['Site Num']
-
-    countyCodes = []
-    siteCodes = []
-
-    for (a, b, c) in zip(state_array, county_array, site_array):
-        countyCodes.append(str(a)+'St'+str(b)+'Co')
-
-    print('found all County Codes all Data!')
-    
-    all_data['County Code'] = countyCodes
-
-    print('replaced all County Codes all Data!')
-
-    countyCodes = []
-    
-    for (a, b, c) in zip(state_array, county_array, site_array):
-        siteCodes.append(str(a)+'St'+str(b)+'Co'+str(c)+'Si')
-
-    print('found all County Codes all Data!')
-
-    # import ipdb; ipdb.set_trace();
-    all_data['Site Code'] = siteCodes
-
-    print('replaced all Site Codes all Data!')
-
-    siteCodes = []
+    print('Starting grouping of all data!')
 
     data = all_data.groupby(['State Code', 'County Code', 'Date Local'])
+
+    print('Grouped all data per county!')
 
     final_result = []
 
@@ -55,6 +29,10 @@ def main():
 
         for row_index, row in df_group.iterrows():
             sampleDuration = row['Sample Duration']
+            if len(row_to_consider) == 0:
+                row_to_consider = row
+                considered_duration = sampleDuration
+
             if sampleDuration == '1 HOUR':
                 considered_duration = '1 HOUR'
                 row_to_consider = row
@@ -69,29 +47,26 @@ def main():
                 if considered_duration != '1 HOUR':
                     considered_duration = '8-HR RUN AVG BEGIN HOUR'
                     row_to_consider = row
-        
-        if len(row_to_consider) == 0:
-
-            row_to_consider = df_group.iterrows()[0]
 
         final_result.append(row_to_consider)
+    
+    print('Added all relevant data to final_result')
 
     ##################### correct till here #################
+
+    ##########CHANGE FILE NAME TO BE CREATED FOR EACH POLLUTANT##############
         
-    coTemp = open('coTemp.csv', 'w')
+    temp = open('O3Temp.csv', 'w')          #change file name for pollutant
     header = ''
     for row in all_data[:1]:
         header += str(row) + ','
     header = header[:-1]
-    coTemp.write(header + '\n')
+    temp.write(header + '\n')
 
-    string_keys = [12, 23, 22, 21, 20, 11, 10, 9, 8, 7, 6, 5]
-    i=150000
+    string_keys = [1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 20, 21, 22, 23]           #String values to be inserted in the query as 'strings'
 
-    # Create the Site Codes
-
-    # new_site_code --> state_code + "S" + county_code + "C" + site_number
-    # new_county_code --> state_code + "S" + county_code
+    #15 lakh increments no2->ozone->so2->co2
+    i = 1500000 #will start with multiples of 15lakh
 
     for row in final_result:
         s = '{},'.format(i)
@@ -100,47 +75,47 @@ def main():
                 append_str = '\'{}\','.format(val)
             else :
                 append_str = '{},'.format(val)
-            # print('key -> ' + str(key))
-            # append_str = '\'{}\','.format(val)
             s = s + append_str
         s = s[:-1]
-        coTemp.write(s + '\n')
+        temp.write(s + '\n')
         i = i+1
+
+
+##############GENERATE UNIQUE STATE AND COUNTY CODES##################
+def generateUniqueCountyCode(all_data):
+    state_array = all_data.iloc[:]['State Code']
+    county_array = all_data.iloc[:]['County Code']
+    site_array = all_data.iloc[:]['Site Num']
+    countyCodes = []
+
+    for (a, b, c) in zip(state_array, county_array, site_array):
+        countyCodes.append(str(a)+'St'+str(b)+'Co')
     
-    ##################### correct till here #################
+    print('found all County Codes all Data!')
+    all_data['County Code'] = countyCodes
+    print('replaced all County Codes all Data!')
+    countyCodes = []
+    return all_data
 
-    divide_data_into_2_files()
 
-def divide_data_into_2_files():
-    data1_ozone = pd.read_csv("/Users/karanasthana/Personal/usapd-fr/Scripts/daily_44201_2016.csv", low_memory=False)
+def generateUniqueSiteCode(all_data):    
+    state_array = all_data.iloc[:]['State Code']
+    county_array = all_data.iloc[:]['County Code']
+    site_array = all_data.iloc[:]['Site Num']
 
-    # header = ''
-    # for row in data1_ozone[:1]:
-    #     header += str(row) + ','
-    # header = header[:-1]
+    siteCodes = []
 
-    all_data_changed = pd.read_csv('coTemp.csv', low_memory=False)
-    ozone1 = open('ozone1.csv', 'a')
-    ozone2 = open('ozone2.csv', 'a')
+    for (a, b, c) in zip(state_array, county_array, site_array):
+        siteCodes.append(str(a)+'St'+str(b)+'Co'+str(c)+'Si')
 
-    # ozone1.write(header + '\n')
-    # ozone2.write(header + '\n')
+    print('found all Site Codes all Data!')
 
-    with open('coTemp.csv') as inf, open('ozone1.csv','w') as of1, open('ozone2.csv','w') as of2:
-        outf = of1
-        for line in inf:
-            if 'karan' in line:
-                outf = of2
-                continue  # prevent output of the line with "string pattern" 
-            outf.write(line)
-    
-def convert_to_sql():
-    ozone1 = pd.read_csv('ozone_final_1.csv', error_bad_lines=False)
-    ozone1 = ozone1[1:]
-     
-    for ndx, row in ozone1.iterrows():
-        print('INSERT INTO TABLE VALUES (' + str(row['State Code']) + str(row['County Code'])+ str(row['Site Num'])+ str(row['Parameter Code'])+ str(row['POC'])+ ')\n')
-        if ndx > 20:
-            break
+    all_data['Site Code'] = siteCodes
+
+    print('replaced all Site Codes all Data!')
+
+    siteCodes = []
+    return all_data
+
 
 main()
