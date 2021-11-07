@@ -44,6 +44,10 @@ export default function SignupPage(props) {
             });
     };
 
+    const handleChange = selectedOptions => {
+        setUserState(selectedOptions.value);
+    }
+
     const validate = () => {
         if (!firstName) {
             alert(FIRST_NAME_MISSING_ERROR);
@@ -135,16 +139,16 @@ export default function SignupPage(props) {
                                     />
                                 </InputGroup>
 
-                                <Form.Label htmlFor="pwd">State</Form.Label>
-                                <InputGroup className="mb-3">
+                                <Form.Label htmlFor="user-state">State</Form.Label>
+                                {/* <InputGroup className="mb-3">
                                     <FormControl
                                         placeholder="Select State"
                                         onChange={e => {setUserState(e.target.value);}}
                                         id="userState"
                                         style={{ backgroundColor: '#E8E8E8' }}
                                     />
-                                </InputGroup>
-                                <StateSelect onChange={e => {setUserState(e.target.value);}} />
+                                </InputGroup> */}
+                                <StateSelect handleChange={handleChange} id="user-state" />
 
                                 <div className="row">
                                     <div className='signup-btn'>

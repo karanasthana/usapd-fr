@@ -2,8 +2,12 @@ import Select from 'react-select'
 
 export default function StateSelect(props) {
     const stateOptions = [{
-        value: 'Florida', label: 'Florida'
+        value: 'florida', label: 'Florida'
     }];
 
-    return <Select options={stateOptions} />;
+    const onChange = selectedOptions => {
+        props.handleChange(selectedOptions)
+    }
+
+    return <Select options={stateOptions} onChange={onChange} />;
 }
