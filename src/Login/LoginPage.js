@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { API_VERSION, BASE_URL, LOGIN, PROTOCOL } from '../Utils/constants';
+import './login.css';
 
 export default function LoginPage(props) {
 
@@ -13,7 +15,9 @@ export default function LoginPage(props) {
         console.log('Email --> ' + email);
         console.log('Pwd --> ' + password);
 
-        axios.post('http://e0dd-67-8-247-98.ngrok.io/api/v1/user/', {
+        const loginUrl = `${PROTOCOL}${BASE_URL}${API_VERSION}${LOGIN}`;
+
+        axios.post(loginUrl, {
             email: `${email}`,
             pwd: `${password}`
         })
@@ -28,31 +32,31 @@ export default function LoginPage(props) {
     };
 
     return (
-        <div className='container-fluid' style={{ minHeight: '100vh', backgroundColor: '#9381FF', padding: '20px', display: 'flex', alignItems: 'center', paddingLeft: '20vw', paddingRight: '20vw' }}> 
-            <div className='container' style={{ backgroundColor: '#F68CFE', borderRadius: '10px' }}>
+        <div className='container-fluid login-top-container'>
+            <div className='container login-container-2'>
                 <div className='row'>
-                    <div className='col-md-6 col-sm-12' style={{ padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-                        <div style={{ paddingTop: '10px', paddingBottom: '10px' }}>
-                            <h2><strong style={{ fontSize: '18px', fontFamily: 'fantasy' }}>USAPD</strong></h2>
+                    <div className='col-md-6 col-sm-12 heading-container'>
+                        <div className='usapd-container'>
+                            <h2><strong className='usapd-heading'>USAPD</strong></h2>
                         </div>
                         <div>
                             <h2 style={{ fontSize: '30px' }}>US Air Pollution Dashboard</h2>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <div className='login-image'>
                             <img src={'https://i.pinimg.com/originals/6b/1b/22/6b1b22573f9f3d4bba11a9fa5cb45652.png'} width={'80%'} height={'auto'} style={{maxHeight: '50vh'}} />
                         </div>
                     </div>
-                    <div className='col-md-6 col-sm-12'  style={{ padding: '20px', backgroundColor: 'white', borderRadius: '10px' }}>
-                        <div style={{  paddingLeft: '20px', paddingRight: '20px', }}>
-                            <span>New here ? <Link to="/signup" style={{ color: '#178be7', cursor: 'pointer' }}>Sign up</Link> here!</span>
-                            <div style={{ marginTop: '30px' }}>
+                    <div className='col-md-6 col-sm-12 login-form-container'>
+                        <div className='login-form-container-2'>
+                            <span>New here ? <Link to="/signup" className='signup-link'>Sign up</Link> here!</span>
+                            <div className='login-input-container'>
                                 <Form.Label htmlFor="email">Email Address</Form.Label>
                                 <InputGroup className="mb-3">
                                     <FormControl
                                         placeholder="john@doe.com"
                                         onChange={e => {setEmail(e.target.value);}}
                                         id="email"
-                                        style={{ backgroundColor: '#E8E8E8', color: 'white' }}
+                                        className='login-input'
                                     />
                                 </InputGroup>
                                 <Form.Label htmlFor="pwd">Password</Form.Label>
@@ -61,12 +65,12 @@ export default function LoginPage(props) {
                                         placeholder="10+ characters"
                                         onChange={e => {setPassword(e.target.value);}}
                                         id="pwd"
-                                        style={{ backgroundColor: '#E8E8E8', color: 'white' }}
+                                        className='login-input'
                                     />
                                 </InputGroup>
                                 
                                 <div className="row">
-                                    <div style={{ paddingTop: '20px' }}>
+                                    <div className='login-btn'>
                                         <Button onClick={captureDetailsAndLogin}>Sign In</Button>
                                     </div>
                                 </div>

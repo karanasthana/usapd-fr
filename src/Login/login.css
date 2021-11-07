@@ -1,0 +1,65 @@
+.login-top-container {
+    min-height: 100vh;
+    background-color: #9381FF;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    padding-left: 20vw;
+    padding-right: 20vw;
+}
+
+.login-top-container .login-container-2 {
+    background-color: #F68CFE;
+    border-radius: 10px;
+}
+
+.login-top-container .login-container-2 .heading-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.login-top-container .login-container-2 .heading-container .usapd-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.login-top-container .login-container-2 .heading-container .usapd-container .usapd-heading {
+    font-size: 18px;
+    font-family: fantasy;
+}
+
+.login-top-container .login-container-2 .heading-container .usapd-container .login-image {
+    display: flex;
+    justify-content: center;
+}
+
+.login-top-container .login-container-2 .login-form-container {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.login-top-container .login-container-2 .login-form-container .login-form-container-2 {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.login-top-container .login-container-2 .login-form-container .login-form-container-2 .signup-link {
+    color: #178be7;
+    cursor: pointer;
+}
+
+.login-top-container .login-container-2 .login-form-container .login-form-container-2 .login-input-container {
+    margin-top: 30px;
+}
+
+.login-top-container .login-container-2 .login-form-container .login-form-container-2 .login-input-container .login-input {
+    background-color: #E8E8E8;
+    color: white;
+}
+
+.login-top-container .login-container-2 .login-form-container .login-form-container-2 .login-input-container .login-btn {
+    padding-top: 20px;
+} 

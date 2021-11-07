@@ -1,27 +1,39 @@
+/* eslint-disable jsx-a11y/alt-text */
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Button, Form, FormControl } from 'react-bootstrap';
 import { InputGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { API_VERSION, BASE_URL, SIGNUP, PROTOCOL } from '../Utils/constants';
+import { EMAIL_MISSING_ERROR, FIRST_NAME_MISSING_ERROR, LAST_NAME_MISSING_ERROR, PWD_MISSING_ERROR, STATE_MISSING_ERROR } from '../Utils/string_constants';
+import './signup.css';
+import StateSelect from '../Components/stateSelect';
 
-export default function LoginPage(props) {
+export default function SignupPage(props) {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [privacyAgreed, setPrivacyAgreed] = useState('');
+    const [userState, setUserState] = useState('');
 
     const captureDetailsAndSignup = () => {
         console.log('First Name --> ' + firstName);
         console.log('Last Name --> ' + lastName);
         console.log('Email --> ' + email);
         console.log('Pwd --> ' + password);
-        console.log('Privacy --> ' + privacyAgreed);
+        console.log('User State --> ' + userState);
 
-        axios.post('http://e0dd-67-8-247-98.ngrok.io/api/v1/user/', {
+        if (!validate()) {
+            return;
+        }
+
+        const signupUrl = `${PROTOCOL}${BASE_URL}${API_VERSION}${SIGNUP}`;
+
+        axios.post(signupUrl, {
             name: `${firstName} ${lastName}`,
             email: `${email}`,
+            password,
         })
             .then(userResponse => {
                 console.log(JSON.stringify(userResponse));
@@ -32,25 +44,58 @@ export default function LoginPage(props) {
             });
     };
 
+    const handleChange = selectedOptions => {
+        setUserState(selectedOptions.value);
+    }
+
+    const validate = () => {
+        if (!firstName) {
+            alert(FIRST_NAME_MISSING_ERROR);
+            return false;
+        }
+
+        if (!lastName) {
+            alert(LAST_NAME_MISSING_ERROR);
+            return false;
+        }
+
+        if (!email) {
+            alert(EMAIL_MISSING_ERROR);
+            return false;
+        }
+
+        if (!password) {
+            alert(PWD_MISSING_ERROR);
+            return false;
+        }
+
+        if (!userState) {
+            alert(STATE_MISSING_ERROR);
+            return false;
+        }
+
+        return true;
+    }
+
     return (
-        <div className='container-fluid' style={{ minHeight: '100vh', backgroundColor: '#9381FF', padding: '20px', display: 'flex', alignItems: 'center' }}> 
-            <div className='container' style={{ backgroundColor: '#F68CFE', borderRadius: '10px' }}>
+        <div className='container-fluid signup-top-container'>
+            <div className='container signup-container-2'>
                 <div className='row'>
-                    <div className='col-md-5 col-sm-12' style={{ padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-                        <div style={{ paddingTop: '10px', paddingBottom: '10px' }}>
-                            <h2><strong style={{ fontSize: '18px', fontFamily: 'fantasy' }}>USAPD</strong></h2>
+                    <div className='col-md-6 col-sm-12 heading-container'>
+                        <div className='usapd-container'>
+                            <h2><strong className='usapd-heading'>USAPD</strong></h2>
                         </div>
                         <div>
                             <h2 style={{ fontSize: '30px' }}>US Air Pollution Dashboard</h2>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <img src={'https://i.pinimg.com/originals/6b/1b/22/6b1b22573f9f3d4bba11a9fa5cb45652.png'} width={'80%'} height={'auto'} alt={'test'} />
+                        <div className='signup-image'>
+                            <img src={'https://i.pinimg.com/originals/6b/1b/22/6b1b22573f9f3d4bba11a9fa5cb45652.png'} width={'80%'} height={'auto'} style={{maxHeight: '50vh'}} />
                         </div>
                     </div>
-                    <div className='col-md-7 col-sm-12'  style={{ padding: '20px', backgroundColor: 'white', borderRadius: '10px', display: 'flex' }}>
-                        <div style={{  paddingLeft: '20px', paddingRight: '20px', }}>
-                            <span style={{ justifyContent: 'flex-end' }}>Already have an account ? <Link to="/" style={{ color: '#178be7', cursor: 'pointer' }}>Log in</Link> here!</span>
-                            <div>
+                    <div className='col-md-6 col-sm-12 signup-form-container'>
+                        <div className='signup-form-container-2'>
+                            <span>Already have an account ? <Link to="/" className='signup-link'>Log in</Link> here!</span>
+                            <div className='signup-input-container'>
                                 <div className='row' style={{ paddingTop: '16px' }}>
                                     <div className='col'>
                                         <Form.Label htmlFor="first-name">First name</Form.Label>
@@ -93,15 +138,20 @@ export default function LoginPage(props) {
                                         style={{ backgroundColor: '#E8E8E8' }}
                                     />
                                 </InputGroup>
-                                
-                                <div className="row">
-                                    <Form.Check 
-                                        type={'checkbox'}
-                                        id={'privacy'}
-                                        label={'Creating an account means you\'re okay with Terms of Service, Privacy Policy and our default Notification settings'}
-                                        onChange={e => { setPrivacyAgreed(e.target.value); }}
+
+                                <Form.Label htmlFor="user-state">State</Form.Label>
+                                {/* <InputGroup className="mb-3">
+                                    <FormControl
+                                        placeholder="Select State"
+                                        onChange={e => {setUserState(e.target.value);}}
+                                        id="userState"
+                                        style={{ backgroundColor: '#E8E8E8' }}
                                     />
-                                    <div style={{ paddingTop: '20px' }}>
+                                </InputGroup> */}
+                                <StateSelect handleChange={handleChange} id="user-state" />
+
+                                <div className="row">
+                                    <div className='signup-btn'>
                                         <Button onClick={captureDetailsAndSignup}>Create Account</Button>
                                     </div>
                                 </div>
