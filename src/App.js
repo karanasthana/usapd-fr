@@ -17,8 +17,6 @@ export default function App() {
         <>
             <Router>
                 <div>
-                    {/* A <Switch> looks through its children <Route>s and
-                renders the first one that matches the current URL. */}
                     <Switch>
                         <Route path="/home">
                             <LandingPage />
@@ -29,8 +27,7 @@ export default function App() {
                         <Route exact  path="/signup">
                             <SignupPage />
                         </Route>
-                        <Route path="/trend/:id">
-                            <GraphPage />
+                        <Route path="/trend/:id" component={GraphPage}>
                         </Route>
                         <Route path="/" render={()=> <LoginContainer/>} />
                     </Switch>
