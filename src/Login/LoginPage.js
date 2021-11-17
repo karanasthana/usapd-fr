@@ -18,11 +18,12 @@ export default function LoginPage(props) {
         const loginUrl = `${PROTOCOL}${BASE_URL}${API_VERSION}${LOGIN}`;
 
         axios.post(loginUrl, {
-            email: `${email}`,
-            pwd: `${password}`
+            email_ID: `${email}`,
+            password: `${password}`
         })
             .then(userResponse => {
-                console.log(JSON.stringify(userResponse));
+                console.log(userResponse.data.EMAIL_ID);
+                console.log(userResponse.data.STATE_CODE);
                 props.history.replace('/home');
             })
             .catch(e => {

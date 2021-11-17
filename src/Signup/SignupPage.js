@@ -31,9 +31,10 @@ export default function SignupPage(props) {
         const signupUrl = `${PROTOCOL}${BASE_URL}${API_VERSION}${SIGNUP}`;
 
         axios.post(signupUrl, {
-            name: `${firstName} ${lastName}`,
-            email: `${email}`,
+            // name: `${firstName} ${lastName}`,
+            email_ID: `${email}`,
             password,
+            state_code: `${userState}`
         })
             .then(userResponse => {
                 console.log(JSON.stringify(userResponse));
@@ -49,15 +50,15 @@ export default function SignupPage(props) {
     }
 
     const validate = () => {
-        if (!firstName) {
-            alert(FIRST_NAME_MISSING_ERROR);
-            return false;
-        }
+        // if (!firstName) {
+        //     alert(FIRST_NAME_MISSING_ERROR);
+        //     return false;
+        // }
 
-        if (!lastName) {
-            alert(LAST_NAME_MISSING_ERROR);
-            return false;
-        }
+        // if (!lastName) {
+        //     alert(LAST_NAME_MISSING_ERROR);
+        //     return false;
+        // }
 
         if (!email) {
             alert(EMAIL_MISSING_ERROR);
