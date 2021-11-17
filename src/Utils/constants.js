@@ -9,181 +9,157 @@ export const SIGNUP = '/user/signup/';
 // States
 export const STATES = [{
     label: "Alabama",
-    value: "Alabama"
+    value: 1
 }, {
     label: "Alaska",
-    value: "Alaska"
-}, {
-    label: "American Samoa",
-    value: "American Samoa"
+    value: 2
 }, {
     label: "Arizona",
-    value: "Arizona"
+    value: 4
 }, {
     label: "Arkansas",
-    value: "Arkansas"
+    value: 5
 }, {
     label: "California",
-    value: "California"
+    value: 6
 }, {
     label: "Colorado",
-    value: "Colorado"
+    value: 8
 }, {
     label: "Connecticut",
-    value: "Connecticut"
+    value: 9
 }, {
     label: "Delaware",
-    value: "Delaware"
+    value: 10
 }, {
     label: "District Of Columbia",
-    value: "District Of Columbia"
-}, {
-    label: "Federated States Of Micronesia",
-    value: "Federated States Of Micronesia"
+    value: 11
 }, {
     label: "Florida",
     value: 12
 }, {
     label: "Georgia",
-    value: "Georgia"
-}, {
-    label: "Guam",
-    value: "Guam"
+    value: 13
 }, {
     label: "Hawaii",
-    value: "Hawaii"
+    value: 15
 }, {
     label: "Idaho",
-    value: "Idaho"
+    value: 16
 }, {
     label: "Illinois",
-    value: "Illinois"
+    value: 17
 }, {
     label: "Indiana",
-    value: "Indiana"
+    value: 18
 }, {
     label: "Iowa",
-    value: "Iowa"
+    value: 19
 }, {
     label: "Kansas",
-    value: "Kansas"
+    value: 20
 }, {
     label: "Kentucky",
-    value: "Kentucky"
+    value: 21
 }, {
     label: "Louisiana",
-    value: "Louisiana"
+    value: 22
 }, {
     label: "Maine",
-    value: "Maine"
-}, {
-    label: "Marshall Islands",
-    value: "Marshall Islands"
+    value: 23
 }, {
     label: "Maryland",
-    value: "Maryland"
+    value: 24
 }, {
     label: "Massachusetts",
-    value: "Massachusetts"
+    value: 25
 }, {
     label: "Michigan",
-    value: "Michigan"
+    value: 26
 }, {
     label: "Minnesota",
-    value: "Minnesota"
+    value: 27
 }, {
     label: "Mississippi",
-    value: "Mississippi"
+    value: 28
 }, {
     label: "Missouri",
-    value: "Missouri"
+    value: 29
 }, {
     label: "Montana",
-    value: "Montana"
+    value: 30
 }, {
     label: "Nebraska",
-    value: "Nebraska"
+    value: 31
 }, {
     label: "Nevada",
-    value: "Nevada"
+    value: 32
 }, {
     label: "New Hampshire",
-    value: "New Hampshire"
+    value: 33
 }, {
     label: "New Jersey",
-    value: "New Jersey"
+    value: 34
 }, {
     label: "New Mexico",
-    value: "New Mexico"
+    value: 35
 }, {
     label: "New York",
-    value: "New York"
+    value: 36
 }, {
     label: "North Carolina",
-    value: "North Carolina"
+    value: 37
 }, {
     label: "North Dakota",
-    value: "North Dakota"
-}, {
-    label: "Northern Mariana Islands",
-    value: "Northern Mariana Islands"
+    value: 38
 }, {
     label: "Ohio",
-    value: "Ohio"
+    value: 39
 }, {
     label: "Oklahoma",
-    value: "Oklahoma"
+    value: 40
 }, {
     label: "Oregon",
-    value: "Oregon"
-}, {
-    label: "Palau",
-    value: "Palau"
+    value: 41
 }, {
     label: "Pennsylvania",
-    value: "Pennsylvania"
-}, {
-    label: "Puerto Rico",
-    value: "Puerto Rico"
+    value: 42
 }, {
     label: "Rhode Island",
-    value: "Rhode Island"
+    value: 44
 }, {
     label: "South Carolina",
-    value: "South Carolina"
+    value: 45
 }, {
     label: "South Dakota",
-    value: "South Dakota"
+    value: 46
 }, {
     label: "Tennessee",
-    value: "Tennessee"
+    value: 47
 }, {
     label: "Texas",
-    value: "Texas"
+    value: 48
 }, {
     label: "Utah",
-    value: "Utah"
+    value: 49
 }, {
     label: "Vermont",
-    value: "Vermont"
-}, {
-    label: "Virgin Islands",
-    value: "Virgin Islands"
+    value: 50
 }, {
     label: "Virginia",
-    value: "Virginia"
+    value: 51
 }, {
     label: "Washington",
-    value: "Washington"
+    value: 53
 }, {
     label: "West Virginia",
-    value: "West Virginia"
+    value: 54
 }, {
     label: "Wisconsin",
-    value: "Wisconsin"
+    value: 55
 }, {
     label: "Wyoming",
-    value: "Wyoming"
+    value: 56
 }];
 
 // Graph Titles
