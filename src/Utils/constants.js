@@ -1,10 +1,10 @@
-export const PROTOCOL = 'https://';
-export const BASE_URL = 'usapd.com/';
+export const PROTOCOL = 'http://';
+export const BASE_URL = 'localhost:8080/';
 export const API_VERSION = 'api/v1/';
 
 // API End-points
-export const LOGIN = 'login/';
-export const SIGNUP = 'signup/';
+export const LOGIN = '/user/login/';
+export const SIGNUP = '/user/signup/';
 
 
 
@@ -45,7 +45,7 @@ export const STATES = [{
     value: "Federated States Of Micronesia"
 }, {
     label: "Florida",
-    value: "Florida"
+    value: 12
 }, {
     label: "Georgia",
     value: "Georgia"
