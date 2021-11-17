@@ -1,5 +1,3 @@
-// import SidebarView from '../Sidebar/SidebarView';
-
 import _ from "lodash";
 import { getGraphTitleFromId } from "../Utils/utils";
 import LineChartGraph from "./LineChartGraph";
