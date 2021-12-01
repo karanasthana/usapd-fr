@@ -165,8 +165,18 @@ export const STATES = [{
 // Graph Titles
 export const GRAPH_ID_TITLE_MAP = {
     'graph1': 'Levels of Pollutants in a state over a 5-year period',
-    'graph2': 'Compare Days of the weeks (Mondays through Sundays) based on the levels of pollutants within the selected state (single) over a 5-year period (2016-2020)',
-    'graph3': 'Compare Hours of the day that has the maximum level of pollutants for a selected (single) state and pollutant over a period of 5 years (2016-2020)',
-    'graph4': 'Compare 2 (up to 4) states of choice based on the levels of a selected (single) pollutant within these states over a 5-year period (2016-2020)',
-    'graph5': 'Number of days (in a month) when the level of pollutant in a state is greater than the recommended safe value of the pollutant',
-}
+    'graph2': 'Compare Days based on the levels of pollutants',
+    'graph3': 'Compare Hours of the day that has the maximum level of pollutants',
+    'graph4': 'Compare states based on the levels of a selected (single) pollutant within these states over a 5-year period (2016-2020)',
+    'graph5': 'Number of days when the level of pollutant in a state is greater than the recommended safe value of the pollutant',
+};
+
+export const POLLUTANT_COLOR_MAP = {
+    'CO': 'red',
+    'SO2': 'brown',
+    'Ozone': 'blue',
+    'NO2': 'black',
+};
+
+export const DEFAULT_MIN_DATE = '01/01/2016';
+export const DEFAULT_MAX_DATE = '12/31/2020';

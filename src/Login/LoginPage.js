@@ -28,6 +28,7 @@ export default function LoginPage(props) {
             })
             .catch(e => {
                 console.error(e);
+                alert(e);
                 props.history.replace('/home');
             });
     };
