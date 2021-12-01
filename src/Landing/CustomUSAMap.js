@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import USAMap from "react-usa-map";
 import CustomLoader from "../Components/CustomLoader";
+import './usa-map.css';
 
 export default function CustomUSAMap(props) {
 
@@ -30,14 +31,13 @@ export default function CustomUSAMap(props) {
   useEffect(() => {
     setApiFinished(false);
     // hit api
-    // then
+    // .then(() => {
     // iterate over all the states and calculate their color from green to red (green is the least polluted, red is the most)
+    // });
     setTimeout(() => {
       setStatesCustomConfig(getStatesCustomConfig(5));
       setApiFinished(true);
     }, 5000);
-    console.log('test');
-    // iterate over the result of the API and then -->
   }, []);
 
   const mapHandler = (event) => {
@@ -45,7 +45,7 @@ export default function CustomUSAMap(props) {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', maxHeight: '90vh', border: '1px solid black', borderRadius: '5px' }}>
+    <div className={'custom-usa-map-container'}>
       {
         apiFinished ? 
         <USAMap customize={statesCustomConfig} onClick={mapHandler} /> :

@@ -1,8 +1,7 @@
-// import SidebarView from '../Sidebar/SidebarView';
-
 import { Button } from "react-bootstrap";
 import CustomUSAMap from "./CustomUSAMap";
 import { Link } from 'react-router-dom';
+import './landing-page.css';
 
 export default function LandingPage(props) {
     const gotoLogin = () => props.history.push('/');
@@ -10,20 +9,20 @@ export default function LandingPage(props) {
     const gotoDashboard = () => props.history.push('/dashboard');
 
     return (
-        <div style={{ width: '100vw' }}>
-            <div style={{ display: 'flex', justifyContent: "space-between", marginTop: '30px' }}>
-                <h1 style={{ fontSize: '3rem', color: '#178be7', marginLeft: '30px' }}>WELCOME TO USAPD!</h1>
-                <img src={'https://cdn.freelogovectors.net/wp-content/uploads/2018/08/uf-university-of-florida.png'} alt="UF" height={60} width={60} style={{ marginRight: '30px' }} />
+        <div className='page-container'>
+            <div className='page-header'>
+                <h1>WELCOME TO USAPD!</h1>
+                <img src={'https://cdn.freelogovectors.net/wp-content/uploads/2018/08/uf-university-of-florida.png'} alt="UF" height={60} width={60} />
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-around', marginLeft: '50px', marginRight: '50px', marginTop: '30px', marginBottom: '30px' }}>
+            <div className='buttons-container'>
                 <Button onClick={gotoLogin} size={'lg'}>Login</Button>
                 <Button onClick={gotoSignup} size={'lg'}>Signup</Button>
                 <Button onClick={gotoDashboard} size={'lg'}>Continue as Guest</Button>
             </div>
-            <div style={{ marginLeft: '30px ' }}>
+            <div className='custom-map-container'>
                 <CustomUSAMap />
             </div>
-            <div style={{ marginLeft: '30px', marginTop: '20px' }}>
+            <div className='text-container'>
                 <p>
                     Explore More?  <Link to="/" className='signup-link'>Login</Link> to get more insights.
                 </p>
@@ -35,7 +34,7 @@ export default function LandingPage(props) {
                 </p>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-around', marginLeft: '50px', marginRight: '50px', marginTop: '30px', marginBottom: '30px' }}>
+            <div className='buttons-container'>
                 <Button onClick={gotoLogin} size={'lg'}>Login</Button>
                 <Button onClick={gotoSignup} size={'lg'}>Signup</Button>
                 <Button onClick={gotoDashboard} size={'lg'}>Continue as Guest</Button>
