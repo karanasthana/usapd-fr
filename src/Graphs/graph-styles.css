@@ -1,0 +1,26 @@
+.graph-container {
+    min-height: 80vh;
+    padding: 20px;
+    margin: 5px;
+    border: 1px solid #444;
+    border-radius: 5px;
+}
+
+.graph-container .dynamics-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+    background-color: aliceblue;
+    border-radius: 5px;
+}
+
+/* .graph-container .dynamics-container .selection-container {
+    display: flex;
+    align-items: center;
+} */
+
+.graph-container .dynamics-container .selection-container .selection-title {
+    font-weight: 500;
+}
