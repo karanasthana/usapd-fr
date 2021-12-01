@@ -7,6 +7,7 @@ import CustomLoader from "../Components/CustomLoader";
 import CustomTitle from "../Components/CustomTitle";
 import StateSelect from "../Components/stateSelect";
 import { DEFAULT_MAX_DATE, DEFAULT_MIN_DATE, POLLUTANT_COLOR_MAP } from "../Utils/constants";
+import { getStringDate } from "../Utils/utils";
 import './graph-styles.css';
 
 export default function Graph1(props) {
@@ -20,7 +21,12 @@ export default function Graph1(props) {
     
     useEffect(() => {
         setApiFinished(false);
-        Promise.all([makeApiCall('SO2'), makeApiCall('NO2'), makeApiCall('CO'), makeApiCall('Ozone')])
+        Promise.all([
+            makeApiCall('SO2'),
+            makeApiCall('NO2'),
+            makeApiCall('CO'),
+            makeApiCall('Ozone')
+        ])
         .then(result => {
             // setPollutant(result.pollutant);
             let allDatasets = _.map(result, res => {
@@ -47,15 +53,15 @@ export default function Graph1(props) {
             return;
         })
         .catch(e => {
-            debugger;
+            // alert(e);
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userState, startDate, endDate]);
 
     let makeApiCall = pollutant => {
-        return axios.get(`http://localhost:8080/api/v1/query1/getData?state=${userState}&pollutant=${pollutant}`)
-        .then(result => {
-            let responseData = result.data;
+        return axios.get(`http://localhost:8080/api/v1/query1/getData?state=${userState}&pollutant=${pollutant}&start=${startDate}&end=${endDate}`)
+        .then(response => {
+            let responseData = response.data;
             let allLabels = _.map(responseData, (val) => {
                 return `${val.YEAR} Wk${val.WEEK}`;
             });
@@ -71,7 +77,7 @@ export default function Graph1(props) {
             };
         })
         .catch(e => {
-            debugger;
+            // alert('Something went wrong! ' + e);
         });
     }
 
@@ -80,47 +86,41 @@ export default function Graph1(props) {
     };
 
     const onStartDateChanged = (startDate) => {
-        console.log(startDate, 'start Date');
-        // input is currently a date object
-        // convert into the required format (mm/dd/yyyy) here and then update
-        setStartDate(startDate);
+        setStartDate(getStringDate(startDate));
     };
     
     const onEndDateChanged = (endDate) => {
-        console.log(endDate, 'end Date');
-        // input is currently a date object
-        // convert into the required format here and then update
-        setEndDate(endDate);
+        setEndDate(getStringDate(endDate))
     };
     
     return (
         <>
-        <CustomTitle title={props.title} />
-        <div>
-            <div className='graph-container'>
-                <div className='dynamics-container'>
-                    <div className='selection-container'>
-                        <div className="selection-title">Start Date:</div>
-                        <CustomCalendar onChange={onStartDateChanged} value={DEFAULT_MIN_DATE} />
-                    </div>
-                    <div className='selection-container'>
-                        <div className="selection-title">End Date:</div>
-                        <CustomCalendar onChange={onEndDateChanged} value={DEFAULT_MAX_DATE} />
+            <CustomTitle title={props.title} />
+            <div>   
+                <div className='graph-container'>
+                    <div className='dynamics-container'>
+                        <div className='selection-container'>
+                            <div className="selection-title">Start Date:</div>
+                            <CustomCalendar onChange={onStartDateChanged} value={DEFAULT_MIN_DATE} />
+                        </div>
+                        <div className='selection-container'>
+                            <div className="selection-title">End Date:</div>
+                            <CustomCalendar onChange={onEndDateChanged} value={DEFAULT_MAX_DATE} />
+                        </div>
+
+                        <div className='selection-container'>
+                            <div className="selection-title">State:</div>
+                            <StateSelect handleChange={onStateChanged} />
+                        </div>
                     </div>
 
-                    <div className='selection-container'>
-                        <div className="selection-title">State:</div>
-                        <StateSelect handleChange={onStateChanged} />
-                    </div>
+                    {
+                        apiFinished ? 
+                        <Line data={finalData} style={{ maxHeight: '80vh' }} /> : 
+                        <CustomLoader />
+                    }
                 </div>
-
-                {
-                    apiFinished ? 
-                    <Line data={finalData} /> : 
-                    <CustomLoader />
-                }
             </div>
-        </div>
         </>
     );
 }
