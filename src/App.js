@@ -18,9 +18,7 @@ export default function App() {
             <Router>
                 <div>
                     <Switch>
-                        <Route path="/home">
-                            <LandingPage />
-                        </Route>
+                        <Route path="/home" component={LandingPage} />
                         <Route path="/dashboard">
                             <DashboardPage />
                         </Route>
