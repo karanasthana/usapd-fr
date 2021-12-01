@@ -5,6 +5,7 @@ export const API_VERSION = 'api/v1/';
 // API End-points
 export const LOGIN = '/user/login/';
 export const SIGNUP = '/user/signup/';
+export const QUERY1 = 'query1/getData';
 
 // States
 export const STATES = [{

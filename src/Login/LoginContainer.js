@@ -7,7 +7,7 @@ class LoginContainer extends Component {
         super(props);
   
         if (global.isLoggedIn) {
-            props.history.replace('/home');
+            props.history.replace('/dashboard');
         }
     }
   
