@@ -1,6 +1,12 @@
 import _ from "lodash";
 import { getGraphTitleFromId } from "../Utils/utils";
-import LineChartGraph from "./LineChartGraph";
+// import BarChartGraph from "./BarChartGraph";
+// import LineChartGraph from "./LineChartGraph";
+import Graph1 from "./Graph1";
+import Graph2 from "./Graph2";
+import Graph3 from "./Graph3";
+import Graph4 from "./Graph4";
+import Graph5 from "./Graph5";
 
 export default function GraphPage(props) {
 
@@ -23,51 +29,51 @@ export default function GraphPage(props) {
 
     switch (typeOfGraph) {
         case 'graph1':
-            graphComponent = (<LineChartGraph 
+            graphComponent = (<Graph1 
                 title = {title}
                 userState = {userState}
                 pollutant = {pollutant}
             />);
             break;
         case 'graph2':
-            graphComponent = (<LineChartGraph
+            graphComponent = (<Graph2
                 title = {title}
                 userState = {userState}
                 pollutant = {pollutant}
             />);
             break;
         case 'graph3':
-            graphComponent = (<LineChartGraph
+            graphComponent = (<Graph3
                 title = {title}
                 userState = {userState}
                 pollutant = {pollutant}
             />);
             break;
         case 'graph4':
-            graphComponent = (<LineChartGraph
+            graphComponent = (<Graph4
                 title = {title}
                 userState = {userState}
                 pollutant = {pollutant}
             />);
             break;
         case 'graph5':
-            graphComponent = (<LineChartGraph
+            graphComponent = (<Graph5
                 title = {title}
                 userState = {userState}
                 pollutant = {pollutant}
             />);
             break;
         default:
-            (<LineChartGraph />)
+            graphComponent = (<Graph5
+                title = {title}
+                userState = {userState}
+                pollutant = {pollutant}
+            />);
     }
 
     return (
         <div style={{ width: '100vw' }}>
-            <div className='row'>
-                <div className='col-md-9'>
-                    <h2>Graph</h2>
-
-                </div>
+            <div className='row' style={{ margin: 0 }}>
                 {graphComponent}
             </div>
         </div>
