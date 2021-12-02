@@ -1,7 +1,7 @@
 import DatePicker from 'react-date-picker';
 import _ from 'lodash';
 import { useState } from 'react';
-import { DEFAULT_MAX_DATE, DEFAULT_MIN_DATE } from '../Utils/constants';
+import { DEFAULT_MAX_DATE, DEFAULT_MIN_DATE_LIMIT } from '../Utils/constants';
 
 export default function CustomCalendar(props) {
     const [myDate, setDate] = useState(!_.isEmpty(props.value) ? new Date(props.value) : '')
@@ -18,7 +18,7 @@ export default function CustomCalendar(props) {
         <div>
             <DatePicker
                 onChange={handleSelect}
-                minDate={new Date(DEFAULT_MIN_DATE)}
+                minDate={new Date(DEFAULT_MIN_DATE_LIMIT)}
                 maxDate={new Date(DEFAULT_MAX_DATE)}
                 dayPlaceholder={'DD'}
                 monthPlaceholder={'MM'}

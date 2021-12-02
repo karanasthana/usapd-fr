@@ -19,17 +19,18 @@ export default function LandingPage(props) {
     const getTotalQueries = () => {
         setShowTotalQueryDialog(true);
         setIsFetchingTotal(true);
-        return axios.get(`http://localhost:8080/api/v1/getAllTuples/getData/`)
+        const getAllTuplesUrl = `http://localhost:8080/api/v1/getAllTuples/getData/`;
+        return axios.get(getAllTuplesUrl)
         .then(result => {
             setTotalQueries(result.data);
             setIsFetchingTotal(false);
         })
         .catch(e => {
             alert(e);
-            setTimeout(() => {
-                setIsFetchingTotal(false);
-                console.log('testing');
-            }, 5000);
+            setIsFetchingTotal(false);
+            // setTimeout(() => {
+            //     console.log('testing');
+            // }, 5000);
         })
 
     }
