@@ -2,30 +2,53 @@ import { useEffect, useState } from "react";
 import USAMap from "react-usa-map";
 import CustomLoader from "../Components/CustomLoader";
 import './usa-map.css';
-import { API_VERSION, BASE_URL, PROTOCOL, QUERY6 } from "../Utils/constants";
+import { API_VERSION, BASE_URL, PROTOCOL, QUERY6, STATE_ABBREV_MAP, HEATMAP } from "../Utils/constants";
 import axios from "axios";
+import _ from "lodash";
 
 
 export default function CustomUSAMap(props) {
+  const [allStatesData, setAllStatesData] = useState([]);
+
+  const stateClicked = (state, rank, aqi) => {
+    alert(`${state} has a rank ${rank} with an AQI of ${aqi}`);
+  };
 
   const getStatesCustomConfig = (val) => {
-    if (val === 5) {
+    if (_.isEmpty(allStatesData) ){
       return {
         "NJ": {
-          fill: "yellow",
+          fill: "navy",
+          clickHandler: (e) => stateClicked(e, 'NJ'),
+        },
+        "NY": {
+          fill: "#CC0000",
         }
-      };
+      }
     }
 
-    return {
-      "NJ": {
-        fill: "navy",
-        clickHandler: (event) => console.log('Custom handler for NJ', event.target.dataset)
-      },
-      "NY": {
-        fill: "#CC0000"
+    let result = {};
+    let allowedStates = _.keys(STATE_ABBREV_MAP);
+
+    _.each(allStatesData, function(stateData) {
+      let stateName = "";
+      if (_.includes(allowedStates, stateData.STATE)) {
+        stateName = STATE_ABBREV_MAP[stateData.STATE]
+      } else {
+        return;
       }
-    };
+
+      let object = {
+        [stateName]: {
+          fill: HEATMAP[stateData.RANK],
+          // fill: `rgb(${255* (stateData.RANK / 50)}, ${(50 - (stateData.RANK / 50)) * 255}, ${0})`,
+          clickHandler: (e) => stateClicked(stateData.STATE, stateData.RANK, stateData.AVGAQI)
+        }
+      }
+      result = _.extend(result, object);
+    });
+    
+    return result;
   };
 
   const [apiFinished, setApiFinished] = useState(false);
@@ -42,6 +65,7 @@ export default function CustomUSAMap(props) {
     return axios.get(graph6Url)
     .then(result => {
       let response = result.data;
+      setAllStatesData(response);
       // AVGAQI: 6.185170655158886
       // RANK: 1
       // STATE: "Hawaii"
@@ -65,7 +89,7 @@ export default function CustomUSAMap(props) {
     <div className={'custom-usa-map-container'}>
       {
         apiFinished ? 
-        <USAMap customize={statesCustomConfig} onClick={mapHandler} /> :
+        <USAMap customize={getStatesCustomConfig()} onClick={mapHandler} /> :
         <CustomLoader type={'BallTriangle'}/>
       }
     </div>
