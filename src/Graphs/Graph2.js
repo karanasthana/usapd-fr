@@ -104,7 +104,7 @@ export default function Graph2(props) {
                     {
                         apiFinished ? 
                         <Line data={finalData} style={{ maxHeight: '80vh' }} /> : 
-                        <CustomLoader type="Audio" />
+                        <CustomLoader />
                     }
                 </div>
             </div>

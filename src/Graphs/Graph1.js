@@ -119,7 +119,7 @@ export default function Graph1(props) {
                     {
                         apiFinished ? 
                         <Line data={finalData} style={{ maxHeight: '80vh' }} /> : 
-                        <CustomLoader type="Audio" />
+                        <CustomLoader />
                     }
                 </div>
             </div>
