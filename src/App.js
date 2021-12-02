@@ -18,17 +18,10 @@ export default function App() {
             <Router>
                 <div>
                     <Switch>
-                        <Route path="/home">
-                            <LandingPage />
-                        </Route>
-                        <Route path="/dashboard">
-                            <DashboardPage />
-                        </Route>
-                        <Route exact  path="/signup">
-                            <SignupPage />
-                        </Route>
-                        <Route path="/trend/:id" component={GraphPage}>
-                        </Route>
+                        <Route path="/home" component={LandingPage} />
+                        <Route path="/dashboard" component={DashboardPage} />
+                        <Route exact  path="/signup" component={SignupPage} />
+                        <Route path="/trend/:id" component={GraphPage} />
                         <Route path="/" render={()=> <LoginContainer/>} />
                     </Switch>
                 </div>

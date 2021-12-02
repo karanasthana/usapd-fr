@@ -24,12 +24,12 @@ export default function LoginPage(props) {
             .then(userResponse => {
                 console.log(userResponse.data.EMAIL_ID);
                 console.log(userResponse.data.STATE_CODE);
-                props.history.replace('/home');
+                props.history.replace('/dashboard');
             })
             .catch(e => {
                 console.error(e);
                 alert(e);
-                props.history.replace('/home');
+                props.history.replace('/dashboard');
             });
     };
 
@@ -68,6 +68,7 @@ export default function LoginPage(props) {
                                         onChange={e => {setPassword(e.target.value);}}
                                         id="pwd"
                                         className='login-input'
+                                        type='password'
                                     />
                                 </InputGroup>
                                 

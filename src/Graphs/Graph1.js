@@ -8,6 +8,7 @@ import CustomTitle from "../Components/CustomTitle";
 import StateSelect from "../Components/stateSelect";
 import { DEFAULT_MAX_DATE, DEFAULT_MIN_DATE, POLLUTANT_COLOR_MAP } from "../Utils/constants";
 import { getStringDate } from "../Utils/utils";
+import { API_VERSION, BASE_URL, QUERY1, PROTOCOL } from '../Utils/constants';
 import './graph-styles.css';
 
 export default function Graph1(props) {
@@ -59,7 +60,8 @@ export default function Graph1(props) {
     }, [userState, startDate, endDate]);
 
     let makeApiCall = pollutant => {
-        return axios.get(`http://localhost:8080/api/v1/query1/getData?state=${userState}&pollutant=${pollutant}&start=${startDate}&end=${endDate}`)
+        const graph1Url = `${PROTOCOL}${BASE_URL}${API_VERSION}${QUERY1}?state=${userState}&pollutant=${pollutant}&start=${startDate}&end=${endDate}`;
+        return axios.get(`${graph1Url}`)
         .then(response => {
             let responseData = response.data;
             let allLabels = _.map(responseData, (val) => {
@@ -117,7 +119,7 @@ export default function Graph1(props) {
                     {
                         apiFinished ? 
                         <Line data={finalData} style={{ maxHeight: '80vh' }} /> : 
-                        <CustomLoader />
+                        <CustomLoader type="Audio" />
                     }
                 </div>
             </div>

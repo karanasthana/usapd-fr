@@ -5,6 +5,11 @@ export const API_VERSION = 'api/v1/';
 // API End-points
 export const LOGIN = '/user/login/';
 export const SIGNUP = '/user/signup/';
+export const QUERY1 = 'query1/getData';
+export const QUERY2 = 'query2/getData';
+
+// EPA Link
+export const EPA_LINK = 'https://epa.gov';
 
 // States
 export const STATES = [{
@@ -171,6 +176,20 @@ export const GRAPH_ID_TITLE_MAP = {
     'graph5': 'Number of days when the level of pollutant in a state is greater than the recommended safe value of the pollutant',
 };
 
+export const POLLUTANTS = [{
+    label: 'Sulfur Dioxide (SO2)',
+    value: 'SO2'
+}, {
+    label: 'Ozone (O3)',
+    value: 'Ozone'
+}, {
+    label: 'Nitrogen Dioxide (NO2)',
+    value: 'NO2'
+}, {
+    label: 'Carbon Monoxide (CO)',
+    value: 'CO'
+}]
+
 export const POLLUTANT_COLOR_MAP = {
     'CO': 'red',
     'SO2': 'brown',
@@ -178,5 +197,68 @@ export const POLLUTANT_COLOR_MAP = {
     'NO2': 'black',
 };
 
+export const DAY_COLOR_MAP = {
+    'MONDAY': 'red',
+    'TUESDAY': 'brown',
+    'WEDNESDAY': 'blue',
+    'THURSDAY': 'black',
+    'FRIDAY': 'orange',
+    'SATURDAY': 'yellow',
+    'SUNDAY': 'crimson',
+};
+
 export const DEFAULT_MIN_DATE = '01/01/2016';
 export const DEFAULT_MAX_DATE = '12/31/2020';
+
+export const STATE_ABBREV_MAP = {
+    "Alaska": "AK",
+    "Hawaii": "HI",
+    "Alabama": "AL",
+    "Arkansas": "AR",
+    "Arizona": "AZ",
+    "California": "CA",
+    "Colorado": "CO",
+    "Connecticut": "CT",
+    "Delaware": "DE",
+    "Florida": "FL",
+    "Georgia": "GA",
+    "Iowa": "IA",
+    "Idaho": "ID",
+    "Illinois": "IL",
+    "Indiana": "IN",
+    "Kansas": "KS",
+    "Kentucky": "KY",
+    "Louisiana": "LA",
+    "Massachusetts": "MA",
+    "Maryland": "MD",
+    "Maine": "ME",
+    "Michigan": "MI",
+    "Minnesota": "MN",
+    "Missouri": "MO",
+    "Mississippi": "MS",
+    "Montana": "MT",
+    "North Carolina": "NC",
+    "North Dakota": "ND",
+    "Nebraska": "NE",
+    "New Hampshire": "NH",
+    "New Jersey": "NJ",
+    "New Mexico": "NM",
+    "Nevada": "NV",
+    "New York": "NY",
+    "Ohio": "OH",
+    "Oklahoma": "OK",
+    "Oregon": "OR",
+    "Pennsylvania": "PA",
+    "Rhode Island": "RI",
+    "South Carolina": "SC",
+    "South Dakota": "SD",
+    "Tennessee": "TN",
+    "Texas": "TX",
+    "Utah": "UT",
+    "Virginia": "VA",
+    "Vermont": "VT",
+    "Washington": "WA",
+    "Wisconsin": "WI",
+    "West Virginia": "WV",
+    "Wyoming": "WY",
+};
