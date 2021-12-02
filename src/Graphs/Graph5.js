@@ -25,7 +25,6 @@ export default function Graph5(props) {
         setApiFinished(false);
         makeApiCall()
         .then(result => {
-            // setPollutant(result.pollutant);
             let allDatasets = _.map(result, res => {
                 return {
                     label: 'Number of days',
@@ -50,7 +49,7 @@ export default function Graph5(props) {
             return;
         })
         .catch(e => {
-            // alert(e);
+            alert(e);
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userState, startDate, endDate, threshold]);

@@ -18,7 +18,6 @@ export default function Graph3(props) {
     const [userState, setUserState] = useState(props.userState ? props.userState : 'Florida');
     const [startDate, setStartDate] = useState(DEFAULT_MIN_DATE);
     const [endDate, setEndDate] = useState(DEFAULT_MAX_DATE);
-    // const [pollutant, setPollutant] = useState({});
     
     useEffect(() => {
         setApiFinished(false);
@@ -29,7 +28,6 @@ export default function Graph3(props) {
             makeApiCall('Ozone')
         ])
         .then(result => {
-            // setPollutant(result.pollutant);
             let allDatasets = _.map(result, res => {
                 return {
                     label: res.pollutant,
@@ -54,7 +52,7 @@ export default function Graph3(props) {
             return;
         })
         .catch(e => {
-            // alert(e);
+            alert(e);
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userState, startDate, endDate]);
