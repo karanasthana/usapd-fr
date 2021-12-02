@@ -7,6 +7,9 @@ export const LOGIN = '/user/login/';
 export const SIGNUP = '/user/signup/';
 export const QUERY1 = 'query1/getData';
 
+// EPA Link
+export const EPA_LINK = 'https://epa.gov';
+
 // States
 export const STATES = [{
     label: "Alabama",

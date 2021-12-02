@@ -5,6 +5,7 @@ import './landing-page.css';
 import axios from "axios";
 import { useState } from "react";
 import CustomLoader from "../Components/CustomLoader";
+import { EPA_LINK } from "../Utils/constants";
 
 export default function LandingPage(props) {
     const gotoLogin = () => props.history.push('/');
@@ -37,7 +38,7 @@ export default function LandingPage(props) {
         <div className='page-container'>
             <div className='page-header'>
                 <h1>WELCOME TO USAPD!</h1>
-                <img src={'https://cdn.freelogovectors.net/wp-content/uploads/2018/08/uf-university-of-florida.png'} alt="UF" height={60} width={60} />
+                <img src={'https://cdn.freelogovectors.net/wp-content/uploads/2018/08/uf-university-of-florida.png'} alt="UF" height={60} width={100} />
             </div>
             <div className='buttons-container'>
                 <Button onClick={gotoLogin} size={'lg'}>Login</Button>
@@ -55,7 +56,14 @@ export default function LandingPage(props) {
                     New here?  <Link to="/signup" className='signup-link'>Sign up</Link> to start.
                 </p>
                 <p>
-                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. 
+                    The <strong>U.S. Air Pollution Dashboard (USAPD)</strong> tool is a web-based data visualization and trend analysis application that offers a versatile and effortless way to manage, visualize and produce several graphic representations of air quality data, from a variety of available templates and types.
+                </p>
+                <p>
+                    The data being utilized to draw these insights is made publicly available by the <a target='blank' href={EPA_LINK}><em>United States Environmental Protection Agency (US EPA).</em></a> Data until the year 2020 has been updated in the database and the same is utilized by the application to provide users with functionality including but not limited to - generating several dashboards, graphs, and plots, and comparing the air quality of different states within the United States. 
+                </p>
+                <p>
+
+The main objective of the “U.S. Air Pollution Dashboard (USAPD)” tool is to enable a user to generate several representations of air quality data in the state of their choice and make informed decisions about the air quality in other states within the United States for travel/migratory purposes and for the EPA to efficiently monitor the pollutant levels within different states of the US to abide by the US Clean Air Act.
                 </p>
             </div>
 
@@ -78,7 +86,7 @@ export default function LandingPage(props) {
                         {isFetchingTotal ? 
                         <CustomLoader /> : 
                         <div>
-                            <p> Total Number of records: {totalQueries} </p>
+                            <p> <strong>Total Number of records:</strong> {totalQueries} </p>
                         </div>
                         } 
                     </Modal.Body>

@@ -13,7 +13,7 @@ export default function SignupPage(props) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [userState, setUserState] = useState('');
+    const [userState, setUserState] = useState('Florida');
 
     const captureDetailsAndSignup = () => {
         console.log('Email --> ' + email);

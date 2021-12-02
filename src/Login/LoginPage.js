@@ -68,6 +68,7 @@ export default function LoginPage(props) {
                                         onChange={e => {setPassword(e.target.value);}}
                                         id="pwd"
                                         className='login-input'
+                                        type='password'
                                     />
                                 </InputGroup>
                                 
