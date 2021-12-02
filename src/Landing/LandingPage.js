@@ -1,4 +1,4 @@
-import { Button, Modal } from "react-bootstrap";
+import { Button, Image, Modal } from "react-bootstrap";
 import CustomUSAMap from "./CustomUSAMap";
 import { Link } from 'react-router-dom';
 import './landing-page.css';
@@ -68,7 +68,7 @@ The main objective of the “U.S. Air Pollution Dashboard (USAPD)” tool is to 
 
             <div className="buttons-container" style={{ marginLeft: '30px', marginBottom: '50px' }}>
                 <Button onClick={getTotalQueries} variant="info" size="lg">
-                    Get insights into the data we are based on
+                    Know more about the Project
                 </Button>
             </div>
 
@@ -82,12 +82,24 @@ The main objective of the “U.S. Air Pollution Dashboard (USAPD)” tool is to 
                     </Modal.Header>
 
                     <Modal.Body>
-                        {isFetchingTotal ? 
-                        <CustomLoader /> : 
-                        <div>
-                            <p> <strong>Total Number of records:</strong> {totalQueries} </p>
-                        </div>
+                        {
+                            isFetchingTotal ? 
+                            <CustomLoader /> : 
+                            <div>
+                                <p> <strong>Total Number of records:</strong> {totalQueries} </p>
+                            </div>
                         } 
+
+                        <p><em>Database Management Systems</em> [COP 5725] Group Project on Data Visualization and Complex Query Formulation.</p>
+                        <p>Instructor: <strong>Dr. Markus Schneider </strong></p>
+                        <p>TA: <strong>Kyuseo Park</strong> </p>
+                        <p style={{ marginBottom: '2px' }}><em>Created By - </em></p>
+                        <div>
+                            <Image src={'https://media-exp1.licdn.com/dms/image/C5603AQF5VshxrQW44Q/profile-displayphoto-shrink_400_400/0/1604443721157?e=1643846400&v=beta&t=ssi78nSpzO9RcfDas7TPOipQiwzEFghVZanSerc-iFs'} roundedCircle style={{ marginLeft: '10px', marginRight: '10px', marginBottom: '20px' }} height={'90px'} alt={'Karan Asthana'} />
+                            <Image src={'https://media-exp1.licdn.com/dms/image/C4E03AQFL_0L-sFlkGg/profile-displayphoto-shrink_400_400/0/1632415414850?e=1643846400&v=beta&t=ehl_FXFvuDAHDpgjd0TZ3pWHN14wBAHK3uAF-_nDC_o'} roundedCircle style={{ marginLeft: '10px', marginRight: '10px', marginBottom: '20px' }} height={'90px'} alt={'Charan Sai Dhanireddy'} />
+                            <Image src={'https://media-exp1.licdn.com/dms/image/C5603AQG562Rxla1KVg/profile-displayphoto-shrink_400_400/0/1631242137862?e=1643846400&v=beta&t=ezzOPP20ENA-pL8J0YmTQtpZxFhY0XtVd_3nsT1uuqg'} roundedCircle style={{ marginLeft: '10px', marginRight: '10px', marginBottom: '20px' }} height={'90px'} alt={'Venkat Sai Dhavaleswarapu'} />
+                            <Image src={'https://media-exp1.licdn.com/dms/image/C4D03AQEcK-8iXKJEbQ/profile-displayphoto-shrink_400_400/0/1628104797499?e=1643846400&v=beta&t=glX-APhzCgF_7nLjVdQLGGKRuGOj5suSms33eBQA0BI'} roundedCircle style={{ marginLeft: '10px', marginRight: '10px', marginBottom: '20px' }} height={'90px'} alt={'Aayush Srivastava'} />
+                        </div>
                     </Modal.Body>
                 </Modal>
             }
