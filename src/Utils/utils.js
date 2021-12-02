@@ -12,3 +12,21 @@ export const getStringDate = dateObj => {
     let year = dateObj.getFullYear();
     return `${month}/${date}/${year}`;
 };
+
+export const getMonthName = monthNum => {
+    const MONTH_ARR = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec'
+    ];
+    return MONTH_ARR[monthNum-1];
+};

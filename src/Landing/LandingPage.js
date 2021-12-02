@@ -19,17 +19,16 @@ export default function LandingPage(props) {
     const getTotalQueries = () => {
         setShowTotalQueryDialog(true);
         setIsFetchingTotal(true);
-        return axios.get(`http://localhost:8080/api/v1/getAllTuples/getData/`)
+        // TODO change these to use variables
+        const getAllTuplesUrl = `http://localhost:8080/api/v1/getAllTuples/getData/`;
+        return axios.get(getAllTuplesUrl)
         .then(result => {
             setTotalQueries(result.data);
             setIsFetchingTotal(false);
         })
         .catch(e => {
             alert(e);
-            setTimeout(() => {
-                setIsFetchingTotal(false);
-                console.log('testing');
-            }, 5000);
+            setIsFetchingTotal(false);
         })
 
     }

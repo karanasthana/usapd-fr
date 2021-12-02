@@ -118,7 +118,7 @@ export default function Graph1(props) {
 
                     {
                         apiFinished ? 
-                        <Line data={finalData} style={{ maxHeight: '80vh' }} /> : 
+                        <Line data={finalData} style={{ maxHeight: '70vh' }} /> : 
                         <CustomLoader />
                     }
                 </div>

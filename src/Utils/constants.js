@@ -7,6 +7,10 @@ export const LOGIN = '/user/login/';
 export const SIGNUP = '/user/signup/';
 export const QUERY1 = 'query1/getData';
 export const QUERY2 = 'query2/getData';
+export const QUERY3 = 'query3/getData';
+export const QUERY4 = 'query4/getData';
+export const QUERY5 = 'query5/getData';
+export const QUERY6 = 'query6/getData';
 
 // EPA Link
 export const EPA_LINK = 'https://epa.gov';
@@ -169,11 +173,11 @@ export const STATES = [{
 
 // Graph Titles
 export const GRAPH_ID_TITLE_MAP = {
-    'graph1': 'Levels of Pollutants in a state over a 5-year period',
+    'graph1': 'Weekly Levels of Pollutants in a state',
     'graph2': 'Compare Days based on the levels of pollutants',
-    'graph3': 'Compare Hours of the day that has the maximum level of pollutants',
+    'graph3': 'Compare Hours of the day that have the maximum level of pollutants',
     'graph4': 'Compare states based on the levels of a selected (single) pollutant within these states over a 5-year period (2016-2020)',
-    'graph5': 'Number of days when the level of pollutant in a state is greater than the recommended safe value of the pollutant',
+    'graph5': 'Number of days when the average API Level in a state is greater than the threshold',
 };
 
 export const POLLUTANTS = [{
@@ -207,7 +211,8 @@ export const DAY_COLOR_MAP = {
     'SUNDAY': 'crimson',
 };
 
-export const DEFAULT_MIN_DATE = '01/01/2016';
+export const DEFAULT_MIN_DATE = '01/01/2020';
+export const DEFAULT_MIN_DATE_LIMIT = '01/01/2016';
 export const DEFAULT_MAX_DATE = '12/31/2020';
 
 export const STATE_ABBREV_MAP = {
