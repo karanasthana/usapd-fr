@@ -6,6 +6,7 @@ export const API_VERSION = 'api/v1/';
 export const LOGIN = '/user/login/';
 export const SIGNUP = '/user/signup/';
 export const QUERY1 = 'query1/getData';
+export const QUERY2 = 'query2/getData';
 
 // EPA Link
 export const EPA_LINK = 'https://epa.gov';
@@ -175,11 +176,35 @@ export const GRAPH_ID_TITLE_MAP = {
     'graph5': 'Number of days when the level of pollutant in a state is greater than the recommended safe value of the pollutant',
 };
 
+export const POLLUTANTS = [{
+    label: 'Sulfur Dioxide (SO2)',
+    value: 'SO2'
+}, {
+    label: 'Ozone (O3)',
+    value: 'Ozone'
+}, {
+    label: 'Nitrogen Dioxide (NO2)',
+    value: 'NO2'
+}, {
+    label: 'Carbon Monoxide (CO)',
+    value: 'CO'
+}]
+
 export const POLLUTANT_COLOR_MAP = {
     'CO': 'red',
     'SO2': 'brown',
     'Ozone': 'blue',
     'NO2': 'black',
+};
+
+export const DAY_COLOR_MAP = {
+    'MONDAY': 'red',
+    'TUESDAY': 'brown',
+    'WEDNESDAY': 'blue',
+    'THURSDAY': 'black',
+    'FRIDAY': 'orange',
+    'SATURDAY': 'yellow',
+    'SUNDAY': 'crimson',
 };
 
 export const DEFAULT_MIN_DATE = '01/01/2016';
