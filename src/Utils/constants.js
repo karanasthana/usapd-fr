@@ -211,9 +211,9 @@ export const DAY_COLOR_MAP = {
     'SUNDAY': 'crimson',
 };
 
-export const DEFAULT_MIN_DATE = '01/01/2020';
-export const DEFAULT_MIN_DATE_LIMIT = '01/01/2016';
-export const DEFAULT_MAX_DATE = '12/31/2020';
+export const DEFAULT_MIN_DATE = '01/Jan/20';
+export const DEFAULT_MIN_DATE_LIMIT = '01/Jan/2016';
+export const DEFAULT_MAX_DATE = '31/Dec/2020';
 
 export const STATE_ABBREV_MAP = {
     "Alaska": "AK",
