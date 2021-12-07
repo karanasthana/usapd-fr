@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import _ from "lodash";
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 import CustomCalendar from "../Components/CustomCalendar";
 import CustomLoader from "../Components/CustomLoader";
 import CustomTitle from "../Components/CustomTitle";
@@ -25,6 +25,7 @@ export default function Graph5(props) {
         setApiFinished(false);
         makeApiCall()
         .then(result => {
+            debugger;
             let allDatasets = _.map(result, res => {
                 return {
                     label: 'Number of days',
@@ -61,7 +62,7 @@ export default function Graph5(props) {
             let responseData = response.data;
             let allLabels = _.map(responseData, (val) => {
                 let year = String(val.YEAR);
-                return `${getMonthName(val.MONTH)} ${year.substring(year.length-2, year.length)}`;
+                return `${val.MONTH} ${year.substring(year.length-2, year.length)}`;
             });
             let allValues = _.map(responseData, (val) => {
                 return `${val.DAYCOUNT}`;
@@ -142,7 +143,7 @@ export default function Graph5(props) {
 
                     {
                         apiFinished ? 
-                        <Line data={finalData} style={{ maxHeight: '70vh' }} options={options}
+                        <Bar data={finalData} style={{ maxHeight: '70vh' }} options={options}
                         /> : 
                         <CustomLoader />
                     }

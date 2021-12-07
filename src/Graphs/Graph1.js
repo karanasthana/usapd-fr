@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import Select from 'react-select'
 import axios from "axios";
 import _ from "lodash";
-import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import CustomCalendar from "../Components/CustomCalendar";
 import CustomLoader from "../Components/CustomLoader";
 import CustomTitle from "../Components/CustomTitle";
@@ -18,7 +19,7 @@ export default function Graph1(props) {
     const [userState, setUserState] = useState(props.userState ? props.userState : global.userState ? global.userState : 'Florida');
     const [startDate, setStartDate] = useState(DEFAULT_MIN_DATE);
     const [endDate, setEndDate] = useState(DEFAULT_MAX_DATE);
-    // const [pollutant, setPollutant] = useState({});
+    const [scale, setScale] = useState(true);
     
     useEffect(() => {
         setApiFinished(false);
@@ -31,13 +32,23 @@ export default function Graph1(props) {
         .then(result => {
             // setPollutant(result.pollutant);
             let allDatasets = _.map(result, res => {
-                return {
+                let obj = {
                     label: res.pollutant,
                     data: res.pollutant_data.data,
-                    borderColor: POLLUTANT_COLOR_MAP[res.pollutant],
-                    backgroundColor: '#FFF',
-                    // yAxisID: res.pollutant
+                    backgroundColor: POLLUTANT_COLOR_MAP[res.pollutant],
                 }
+
+                if (scale) {
+                    obj = _.extend(obj, {
+                        yAxisID: res.pollutant,
+                    });
+                } else {
+                    obj = _.extend(obj, {
+                        yAxisID: 'y'
+                    });
+                }
+
+                return obj;
             });
 
             let allLabels = _.map(result, res => {
@@ -54,10 +65,11 @@ export default function Graph1(props) {
             return;
         })
         .catch(e => {
+            setApiFinished(true);
             // alert(e);
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [userState, startDate, endDate]);
+    }, [userState, startDate, endDate, scale]);
 
     let makeApiCall = pollutant => {
         const graph1Url = `${PROTOCOL}${BASE_URL}${API_VERSION}${QUERY1}?state=${userState}&pollutant=${pollutant}&start=${startDate}&end=${endDate}`;
@@ -65,7 +77,9 @@ export default function Graph1(props) {
         .then(response => {
             let responseData = response.data;
             let allLabels = _.map(responseData, (val) => {
-                return `${val.SEASON} ${val.YEAR}`;
+                let season = val.SEASON;
+                season = season.substring(1);
+                return `${season} ${val.YEAR}`;
             });
             let allValues = _.map(responseData, (val) => {
                 return `${val.MEANVALUE}`;
@@ -94,6 +108,59 @@ export default function Graph1(props) {
     const onEndDateChanged = (endDate) => {
         setEndDate(getStringDate(endDate))
     };
+
+    const onChangeScale = (newVal) => {
+        setScale(newVal.value);
+    };
+
+    const options = scale ? ({
+        scales: {
+            y: {
+                ticks: {
+                    color: 'transparent'
+                }
+            },
+        }
+    }) : null;
+    
+    // const options = scale ? ({
+    //     scales: {
+    //         y: {
+    //             ticks: {
+    //                 color: 'transparent'
+    //             },
+    //         },
+    //         Ozone: {
+    //             ticks: {
+    //                 color: POLLUTANT_COLOR_MAP['Ozone']
+    //             },
+    //             // min: 0,
+    //             // max: 0.2
+    //         },
+    //         SO2: {
+    //             ticks: {
+    //                 color: POLLUTANT_COLOR_MAP['SO2']
+    //             },
+    //             // min: 0,
+    //             // suggestedMax: 2,
+    //             // max: 10
+    //         },
+    //         CO: {
+    //             ticks: {
+    //                 color: POLLUTANT_COLOR_MAP['CO']
+    //             },
+    //             // min: 0,
+    //             // max: 1
+    //         },
+    //         NO2: {
+    //             ticks: {
+    //                 color: POLLUTANT_COLOR_MAP['NO2']
+    //             },
+    //             // min: 0,
+    //             // max: 25
+    //         },
+    //     }
+    // }) : null;
     
     return (
         <>
@@ -114,11 +181,29 @@ export default function Graph1(props) {
                             <div className="selection-title">State:</div>
                             <StateSelect handleChange={onStateChanged} />
                         </div>
+
+                        <div className='selection-container'>
+                            <div className="selection-title">Scale:</div>
+                            <Select
+                                options={[{
+                                    label: 'View on common scale',
+                                    value: false
+                                }, {
+                                    label: 'View on individual scales',
+                                    value: true
+                                }]}
+                                onChange={onChangeScale}
+                                defaultValue={{
+                                    label: 'View on individual scales',
+                                    value: true
+                                }}
+                            />
+                        </div>
                     </div>
 
                     {
                         apiFinished ? 
-                        <Line data={finalData} style={{ maxHeight: '70vh' }} /> : 
+                        <Bar data={finalData} style={{ maxHeight: '70vh' }} options={options} /> : 
                         <CustomLoader />
                     }
                 </div>
