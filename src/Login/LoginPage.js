@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_VERSION, BASE_URL, LOGIN, PROTOCOL } from '../Utils/constants';
 import './login.css';
+import { getStateName } from '../Utils/utils';
 import CustomLoader from '../Components/CustomLoader';
 
 export default function LoginPage(props) {
@@ -27,6 +28,8 @@ export default function LoginPage(props) {
             .then(userResponse => {
                 console.log(userResponse.data.EMAIL_ID);
                 console.log(userResponse.data.STATE_CODE);
+                let userStateObj = getStateName(userResponse.data.STATE_CODE);
+                global.userState = userStateObj.label;
                 props.history.replace('/dashboard');
                 setIsLogging(false);
             })

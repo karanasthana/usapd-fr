@@ -1,4 +1,5 @@
-import { GRAPH_ID_DESC_MAP, GRAPH_ID_TITLE_MAP } from "./constants"
+import { GRAPH_ID_DESC_MAP, GRAPH_ID_TITLE_MAP, STATES } from "./constants"
+import _ from 'lodash';
 
 export const getGraphTitleFromId = (graphId) => {
     let map = GRAPH_ID_TITLE_MAP;
@@ -38,4 +39,9 @@ export const getStringDate = dateObj => {
     year = year.substring(year.length-2, year.length);
     // 01/Jan/15
     return `${date}/${month}/${year}`;
+};
+
+export const getStateName = stateCode => {
+    let allStatesMapList = STATES;
+    return _.find(allStatesMapList, stateObj => stateObj.value === stateCode );
 };

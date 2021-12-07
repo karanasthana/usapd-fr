@@ -17,7 +17,7 @@ export default function CustomUSAMap(props) {
   const handleClose = () => setShowRank(false);
 
   const stateClicked = (state, rank, aqi) => {
-    alert();
+    // alert();
     setShowRank(true);
     setCurrentRank(rank);
     setCurrentState(state);
