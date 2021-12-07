@@ -85,7 +85,7 @@ The main objective of the “U.S. Air Pollution Dashboard (USAPD)” tool is to 
                     <Modal.Body>
                         {
                             isFetchingTotal ? 
-                            <CustomLoader /> : 
+                            <CustomLoader inline={true} /> : 
                             <div>
                                 <p> <strong>Total Number of records:</strong> {totalQueries} </p>
                             </div>

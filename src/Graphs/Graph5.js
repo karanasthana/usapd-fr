@@ -7,7 +7,7 @@ import CustomLoader from "../Components/CustomLoader";
 import CustomTitle from "../Components/CustomTitle";
 import StateSelect from "../Components/stateSelect";
 import { DEFAULT_MAX_DATE, DEFAULT_MIN_DATE } from "../Utils/constants";
-import { getStringDate } from "../Utils/utils";
+import { getMonthName, getStringDate } from "../Utils/utils";
 import { API_VERSION, BASE_URL, QUERY5, PROTOCOL } from '../Utils/constants';
 import './graph-styles.css';
 import { FormControl } from "react-bootstrap";
@@ -62,7 +62,9 @@ export default function Graph5(props) {
             let responseData = response.data;
             let allLabels = _.map(responseData, (val) => {
                 let year = String(val.YEAR);
-                return `${val.MONTH} ${year.substring(year.length-2, year.length)}`;
+                let month = String(val.MONTH);
+                month = getMonthName(month);
+                return `${month} ${year.substring(year.length-2, year.length)}`;
             });
             let allValues = _.map(responseData, (val) => {
                 return `${val.DAYCOUNT}`;

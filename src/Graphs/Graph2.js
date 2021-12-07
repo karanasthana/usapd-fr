@@ -60,7 +60,7 @@ export default function Graph2(props) {
             let allValues = [];
             allValues = _.map(WEEKDAYS, (day) => {
                 let dayValues = _.filter(responseData, (dataObj) => {
-                    return _.includes(dataObj.WEEKDAY, day);
+                    return _.includes(dataObj.DAY, day);
                 });
                 dayValues = _.map(dayValues, dayValObj => {
                     return dayValObj.MEANVALUE;
