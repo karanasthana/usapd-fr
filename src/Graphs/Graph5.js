@@ -31,7 +31,7 @@ export default function Graph5(props) {
                     data: res.pollutant_data.data,
                     borderColor: 'crimson',
                     backgroundColor: 'green',
-                    yAxisID: res.pollutant,
+                    // yAxisID: res.pollutant
                 }
             });
 
@@ -98,6 +98,15 @@ export default function Graph5(props) {
     const onEndDateChanged = (endDate) => {
         setEndDate(getStringDate(endDate))
     };
+
+    const options = {
+        scales: {
+            y: {
+                max: 35,
+                suggestedMin: 0
+            }
+        }
+    };
     
     return (
         <>
@@ -107,11 +116,11 @@ export default function Graph5(props) {
                     <div className='dynamics-container'>
                         <div className='selection-container'>
                             <div className="selection-title">Start Date:</div>
-                            <CustomCalendar onChange={onStartDateChanged} value={DEFAULT_MIN_DATE} />
+                            <CustomCalendar onChange={onStartDateChanged} value={DEFAULT_MIN_DATE} monthPicker={true} />
                         </div>
                         <div className='selection-container'>
                             <div className="selection-title">End Date:</div>
-                            <CustomCalendar onChange={onEndDateChanged} value={DEFAULT_MAX_DATE} />
+                            <CustomCalendar onChange={onEndDateChanged} value={DEFAULT_MAX_DATE} monthPicker={true} />
                         </div>
 
                         <div className='selection-container'>
@@ -133,7 +142,8 @@ export default function Graph5(props) {
 
                     {
                         apiFinished ? 
-                        <Line data={finalData} style={{ maxHeight: '70vh' }} /> : 
+                        <Line data={finalData} style={{ maxHeight: '70vh' }} options={options}
+                        /> : 
                         <CustomLoader />
                     }
                 </div>

@@ -90,7 +90,10 @@ export default function CustomUSAMap(props) {
       {
         apiFinished ? 
         <USAMap customize={getStatesCustomConfig()} onClick={mapHandler} /> :
-        <CustomLoader type={'BallTriangle'}/>
+        <div>
+          <p>Fetching States AQI Level</p>
+          <USAMap />
+        </div>
       }
     </div>
   );

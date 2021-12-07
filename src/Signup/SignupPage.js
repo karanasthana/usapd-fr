@@ -33,7 +33,7 @@ export default function SignupPage(props) {
         })
             .then(userResponse => {
                 console.log(JSON.stringify(userResponse));
-                props.history.replace('/home');
+                props.history.replace('/dashboard');
             })
             .catch(e => {
                 console.error(e);
