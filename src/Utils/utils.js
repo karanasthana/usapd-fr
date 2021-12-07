@@ -30,5 +30,6 @@ export const getStringDate = dateObj => {
     let date = dateObj.getDate();
     let year = (String)(dateObj.getFullYear());
     year = year.substring(year.length-2, year.length);
+    // 01/Jan/15
     return `${date}/${month}/${year}`;
 };

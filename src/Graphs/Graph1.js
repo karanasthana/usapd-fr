@@ -65,7 +65,7 @@ export default function Graph1(props) {
         .then(response => {
             let responseData = response.data;
             let allLabels = _.map(responseData, (val) => {
-                return `${val.YEAR} Wk${val.WEEK}`;
+                return `${val.SEASON} ${val.YEAR}`;
             });
             let allValues = _.map(responseData, (val) => {
                 return `${val.MEANVALUE}`;

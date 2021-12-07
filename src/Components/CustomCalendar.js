@@ -24,6 +24,7 @@ export default function CustomCalendar(props) {
                 dayPlaceholder={'DD'}
                 monthPlaceholder={'MM'}
                 yearPlaceholder={'YYYY'}
+                maxDetail={props.monthPicker ? 'year' : 'month'}
                 required={true}
                 value={myDate}
                 clearIcon={null}

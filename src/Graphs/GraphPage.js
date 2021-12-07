@@ -1,7 +1,5 @@
 import _ from "lodash";
 import { getGraphTitleFromId } from "../Utils/utils";
-// import BarChartGraph from "./BarChartGraph";
-// import LineChartGraph from "./LineChartGraph";
 import Graph1 from "./Graph1";
 import Graph2 from "./Graph2";
 import Graph3 from "./Graph3";
