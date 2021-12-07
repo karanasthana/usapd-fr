@@ -178,8 +178,8 @@ export const GRAPH_ID_TITLE_MAP = {
     'graph2': 'Day of the week pollution trends',
     'graph3': 'Hourly Maximum pollution trends',
     'graph4': 'Compare state pollution levels',
-    'graph5': 'Recommended AQI levels',
-    'graph7': 'Population vs pollution trends'
+    'graph5': 'Days of the month exceeding AQI threshold',
+    'graph7': 'Population vs pollutant trend'
 };
 
 // Graph Descriptions
