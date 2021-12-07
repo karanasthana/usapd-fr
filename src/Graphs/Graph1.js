@@ -36,7 +36,7 @@ export default function Graph1(props) {
                     data: res.pollutant_data.data,
                     borderColor: POLLUTANT_COLOR_MAP[res.pollutant],
                     backgroundColor: '#FFF',
-                    yAxisID: res.pollutant,
+                    // yAxisID: res.pollutant
                 }
             });
 

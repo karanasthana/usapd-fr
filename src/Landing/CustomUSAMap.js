@@ -5,13 +5,23 @@ import './usa-map.css';
 import { API_VERSION, BASE_URL, PROTOCOL, QUERY6, STATE_ABBREV_MAP, HEATMAP } from "../Utils/constants";
 import axios from "axios";
 import _ from "lodash";
-
+import { Modal } from "react-bootstrap";
+import { USA_MAP_HEADING } from "../Utils/string_constants";
 
 export default function CustomUSAMap(props) {
   const [allStatesData, setAllStatesData] = useState([]);
+  const [showRank, setShowRank] = useState(false);
+  const [rankText, setRankText] = useState('');
+  const [currentRank, setCurrentRank] = useState('');
+  const [currentState, setCurrentState] = useState('');
+  const handleClose = () => setShowRank(false);
 
   const stateClicked = (state, rank, aqi) => {
-    alert(`${state} has a rank ${rank} with an AQI of ${aqi}`);
+    alert();
+    setShowRank(true);
+    setCurrentRank(rank);
+    setCurrentState(state);
+    setRankText(`${state} has a rank ${rank} with an AQI of ${aqi}`);
   };
 
   const getStatesCustomConfig = (val) => {
@@ -66,9 +76,6 @@ export default function CustomUSAMap(props) {
     .then(result => {
       let response = result.data;
       setAllStatesData(response);
-      // AVGAQI: 6.185170655158886
-      // RANK: 1
-      // STATE: "Hawaii"
       calculateCustomConfig(result);
       setApiFinished(true);
     })
@@ -86,15 +93,39 @@ export default function CustomUSAMap(props) {
   };
 
   return (
+    <>
+    <div>
+      <div style={{ textAlign: 'center', color: '#178be7' }}>
+        <h1>{USA_MAP_HEADING}</h1>
+      </div>
+    </div>
     <div className={'custom-usa-map-container'}>
       {
         apiFinished ? 
         <USAMap customize={getStatesCustomConfig()} onClick={mapHandler} /> :
-        <div>
-          <p>Fetching States AQI Level</p>
+        <div style={{ textAlign: 'center' }}>
+          <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <h3 style={{ margin: '15px' }}>Fetching AQI Level per State....</h3>
+            <CustomLoader inline='true' />
+          </span>
           <USAMap />
         </div>
       }
+      {
+        <Modal
+            show={showRank}
+            onHide={handleClose}
+            centered>
+            <Modal.Header closeButton >
+                <Modal.Title>{currentState} - Rank {currentRank}</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+                {rankText} 
+            </Modal.Body>
+        </Modal>
+      }
     </div>
+    </>
   );
 }

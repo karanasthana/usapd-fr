@@ -1,9 +1,10 @@
 .dashboard-page .all-tiles {
     padding: 10px;
-    margin: 10px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    padding-left: 180px;
+    padding-right: 180px;
 }
 
 .dashboard-page .all-tiles .tile {
@@ -14,7 +15,17 @@
     justify-content: center;
     align-items: center;
     padding: 5px;
-    margin: 5px;
+    margin: 10px;
+}
+
+.dashboard-page .all-tiles .tile-2 {
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+    margin: 10px;
 }
 
 .dashboard-page .all-tiles .tile:hover {
@@ -27,9 +38,19 @@
     color: white;
 }
 
-.dashboard-page .all-tiles .tile .graph-title {
-    text-align: center;
+.dashboard-page .all-tiles .tile-2 .graph-title {
     padding-top: 10px;
     color: #178be7;
     font-size: 32px;
+    text-align: start;
+}
+
+.dashboard-page .all-tiles .tile-2:hover {
+    background-color: #178be7;
+    color: white;
+    cursor: pointer;
+}
+
+.dashboard-page .all-tiles .tile-2:hover .graph-title {
+    color: white;
 }

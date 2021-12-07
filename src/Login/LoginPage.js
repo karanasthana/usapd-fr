@@ -5,15 +5,18 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_VERSION, BASE_URL, LOGIN, PROTOCOL } from '../Utils/constants';
 import './login.css';
+import CustomLoader from '../Components/CustomLoader';
 
 export default function LoginPage(props) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isLogging, setIsLogging] = useState(false);
 
     const captureDetailsAndLogin = () => {
         console.log('Email --> ' + email);
         console.log('Pwd --> ' + password);
+        setIsLogging(true);
 
         const loginUrl = `${PROTOCOL}${BASE_URL}${API_VERSION}${LOGIN}`;
 
@@ -25,11 +28,12 @@ export default function LoginPage(props) {
                 console.log(userResponse.data.EMAIL_ID);
                 console.log(userResponse.data.STATE_CODE);
                 props.history.replace('/dashboard');
+                setIsLogging(false);
             })
             .catch(e => {
                 console.error(e);
                 alert(e);
-                props.history.replace('/dashboard');
+                setIsLogging(false);
             });
     };
 
@@ -82,5 +86,12 @@ export default function LoginPage(props) {
                     </div>
                 </div>
             </div>
+            {
+                isLogging ?
+                <div style={{ zIndex: 2000, position: 'absolute', right: '40vw' }}> 
+                    <CustomLoader />
+                </div>:
+                null
+            }
         </div>);
 }

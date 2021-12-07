@@ -11,6 +11,7 @@ export const QUERY3 = 'query3/getData';
 export const QUERY4 = 'query4/getData';
 export const QUERY5 = 'query5/getData';
 export const QUERY6 = 'query6/getData';
+export const QUERY7 = 'query7/getData';
 
 // EPA Link
 export const EPA_LINK = 'https://epa.gov';
@@ -173,11 +174,22 @@ export const STATES = [{
 
 // Graph Titles
 export const GRAPH_ID_TITLE_MAP = {
-    'graph1': 'Seasonal Pollutants Levels in a state',
-    'graph2': 'Compare Days based on the levels of pollutants',
-    'graph3': 'Compare Hours of the day that have the maximum level of pollutants',
-    'graph4': 'Compare states based on the levels of a selected (single) pollutant within these states over a 5-year period (2016-2020)',
-    'graph5': 'Number of days when the average API Level in a state is greater than the threshold',
+    'graph1': 'Seasonal pollutant trends',
+    'graph2': 'Day of the week pollution trends',
+    'graph3': 'Hourly Maximum pollution trends',
+    'graph4': 'Compare state pollution levels',
+    'graph5': 'Recommended AQI levels',
+    'graph7': 'Population vs pollution trends'
+};
+
+// Graph Descriptions
+export const GRAPH_ID_DESC_MAP = {
+    'graph1': 'Study how the levels of pollutants has varied over the seasons (Spring, Summer, Fall, Winter) over a given time period.',
+    'graph2': 'Study the trend: how average pollutant levels over different days of the week, have changed over the last 5 year period.',
+    'graph3': 'Study the trend: which hour of the day, on an avergage, had the highest level of the pollutant over a selected time period',
+    'graph4': 'Compare levels of a single pollutant between between multiple (upto 4) states over a given time period.',
+    'graph5': 'Study the number of days, in a state, where the AQI level was higher than its recommended safe value.',
+    'graph7': 'Study the trend: Has the change in population of a state, resulted in consequent changes in the pollution levels for that state.'
 };
 
 export const POLLUTANTS = [{
