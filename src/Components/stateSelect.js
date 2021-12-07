@@ -17,8 +17,8 @@ export default function StateSelect(props) {
         }
     }
     let stateVal = '';
-    let defaultValue = global.user?.userState;
-    defaultValue = 'Florida';
+    let defaultValue = global.userState;
+    defaultValue = _.isEmpty(defaultValue) ? 'Florida' : defaultValue;
     
     if (!_.isUndefined(defaultValue)) {
         stateVal = _.find(STATES, function(state) {

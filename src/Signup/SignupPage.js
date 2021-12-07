@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { API_VERSION, BASE_URL, SIGNUP, PROTOCOL } from '../Utils/constants';
 import { EMAIL_MISSING_ERROR, PWD_MISSING_ERROR, STATE_MISSING_ERROR } from '../Utils/string_constants';
 import './signup.css';
+import { getStateName } from '../Utils/utils';
 import StateSelect from '../Components/stateSelect';
 import CustomLoader from '../Components/CustomLoader';
 
@@ -36,6 +37,9 @@ export default function SignupPage(props) {
             state_code: `${userState}`
         })
             .then(userResponse => {
+                let userStateObj = getStateName(userResponse.data.STATE_CODE);
+                global.userState = userStateObj.label;
+
                 console.log(JSON.stringify(userResponse));
                 props.history.replace('/dashboard');
                 setIsSigningUp(false);

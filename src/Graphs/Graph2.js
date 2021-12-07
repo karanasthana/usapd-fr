@@ -14,7 +14,7 @@ export default function Graph2(props) {
 
     const [apiFinished, setApiFinished] = useState(false);
     const [finalData, setFinalData] = useState({});
-    const [userState, setUserState] = useState(props.userState ? props.userState : 'Florida');
+    const [userState, setUserState] = useState(props.userState ? props.userState : global.userState ? global.userState : 'Florida');
     const [pollutant, setPollutant] = useState('NO2');
     const onPollutantChanged = pollutant => { setPollutant(pollutant.value) };
     
