@@ -7,7 +7,7 @@ import CustomLoader from "../Components/CustomLoader";
 import CustomTitle from "../Components/CustomTitle";
 import StateSelect from "../Components/stateSelect";
 import { DEFAULT_MAX_DATE, DEFAULT_MIN_DATE } from "../Utils/constants";
-import { getStringDate, getMonthName } from "../Utils/utils";
+import { getStringDate } from "../Utils/utils";
 import { API_VERSION, BASE_URL, QUERY5, PROTOCOL } from '../Utils/constants';
 import './graph-styles.css';
 import { FormControl } from "react-bootstrap";
