@@ -1,44 +1,41 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import _ from "lodash";
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 import CustomLoader from "../Components/CustomLoader";
 import CustomTitle from "../Components/CustomTitle";
 import StateSelect from "../Components/stateSelect";
 import { POLLUTANT_COLOR_MAP } from "../Utils/constants";
 import { API_VERSION, BASE_URL, QUERY7, PROTOCOL } from '../Utils/constants';
 import './graph-styles.css';
+import PollutantSelect from "../Components/PollutantSelect";
 
 export default function Graph7(props) {
 
     const [apiFinished, setApiFinished] = useState(false);
     const [finalData, setFinalData] = useState({});
     const [userState, setUserState] = useState(props.userState ? props.userState : global.userState ? global.userState : 'Florida');
-    // const [pollutant, setPollutant] = useState({});
+    const [pollutant, setPollutant] = useState('NO2');
     
     useEffect(() => {
         setApiFinished(false);
         Promise.all([
-            makeApiCall('SO2'),
-            makeApiCall('NO2'),
-            makeApiCall('CO'),
-            makeApiCall('Ozone')
+            makeApiCall(),
         ])
         .then(result => {
-            // setPollutant(result.pollutant);
-            let allDatasets = _.map(result, res => {
+            let newResult = result[0].result;
+            let allDatasets = _.map(newResult, res => {
                 return {
-                    label: res.pollutant,
-                    data: res.pollutant_data.data,
-                    borderColor: POLLUTANT_COLOR_MAP[res.pollutant],
-                    backgroundColor: '#FFF',
-                    // yAxisID: res.pollutant
+                    label: res[0].type,
+                    data: _.map(res, obj => obj.data),
+                    borderColor: POLLUTANT_COLOR_MAP[res[0].type] || 'black',
+                    backgroundColor: POLLUTANT_COLOR_MAP[res[0].type] || 'black',
+                    // backgroundColor: '#FFF',
+                    yAxisID: 'test'
                 }
             });
 
-            let allLabels = _.map(result, res => {
-                return res.pollutant_data.labels;
-            });
+            let allLabels = result[0].allLabels;
             allLabels = _.flatten(allLabels);
             allLabels = _.union(allLabels);
             setFinalData({
@@ -53,26 +50,48 @@ export default function Graph7(props) {
             // alert(e);
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [userState]);
+    }, [userState, pollutant]);
 
-    let makeApiCall = pollutant => {
+    let makeApiCall = () => {
         const graph7Url = `${PROTOCOL}${BASE_URL}${API_VERSION}${QUERY7}?state=${userState}`;
         return axios.get(`${graph7Url}`)
         .then(response => {
             let responseData = response.data;
-            let allLabels = _.map(responseData, (val) => {
-                return `${val.SEASON} ${val.YEAR}`;
-            });
-            let allValues = _.map(responseData, (val) => {
-                return `${val.MEANVALUE}`;
-            });
-            return {
-                pollutant: pollutant,
-                pollutant_data: {
-                    data: allValues,
-                    labels: allLabels
+            let groupedData = _.groupBy(responseData, 'POLLUTANT');
+
+            let group = groupedData['CO'];
+            var populationData = _.map(group, obj => {
+                return {
+                    year: obj.YEAR,
+                    type: 'POPULATION',
+                    data: obj.POPULATION_PERCENTAGE_DIFF
                 }
+            });
+            var result = _.map(groupedData, arr => {
+                if (arr[0].POLLUTANT !== pollutant) {
+                    return null;
+                }
+                return _.map(arr, obj => {
+                    return {
+                        year: obj.YEAR,
+                        type: obj.POLLUTANT,
+                        data: obj.POLLUTANT_PERCENTAGE_DIFF
+                    };
+                });
+            });
+
+            result = _.compact(result);
+
+            result.push(populationData);
+
+            let allLabels = ['2017', '2018', '2019', '2020'];
+
+            let obj = {
+                result,
+                allLabels
             };
+
+            return obj;
         })
         .catch(e => {
             // alert('Something went wrong! ' + e);
@@ -81,6 +100,10 @@ export default function Graph7(props) {
 
     const onStateChanged = (e) => {
         setUserState(e.label);
+    };
+
+    const onPollutantChanged = e => {
+        setPollutant(e.value);
     };
     
     return (
@@ -93,11 +116,15 @@ export default function Graph7(props) {
                             <div className="selection-title">State:</div>
                             <StateSelect handleChange={onStateChanged} />
                         </div>
+                        <div className='selection-container'>
+                            <div className="selection-title">State:</div>
+                            <PollutantSelect handleChange={onPollutantChanged} />
+                        </div>
                     </div>
 
                     {
                         apiFinished ? 
-                        <Line data={finalData} style={{ maxHeight: '70vh' }} /> : 
+                        <Bar data={finalData} style={{ maxHeight: '70vh' }} /> : 
                         <CustomLoader />
                     }
                 </div>

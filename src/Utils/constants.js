@@ -186,6 +186,7 @@ export const GRAPH_ID_TITLE_MAP = {
 export const GRAPH_ID_DESC_MAP = {
     'graph1': 'Study how the levels of pollutants has varied over the seasons (Spring, Summer, Fall, Winter) over a given time period.',
     'graph2': 'Study the trend: how average pollutant levels over different days of the week, have changed over the last 5 year period.',
+    // add that what are these (wrt sites in the state)
     'graph3': 'Study the trend: which hour of the day, on an avergage, had the highest level of the pollutant over a selected time period',
     'graph4': 'Compare levels of a single pollutant between between multiple (upto 4) states over a given time period.',
     'graph5': 'Study the number of days, in a state, where the AQI level was higher than its recommended safe value.',
@@ -210,7 +211,7 @@ export const POLLUTANT_COLOR_MAP = {
     'CO': 'red',
     'SO2': 'brown',
     'Ozone': 'blue',
-    'NO2': 'black',
+    'NO2': 'orange',
 };
 
 export const DAY_COLOR_MAP = {
@@ -219,11 +220,11 @@ export const DAY_COLOR_MAP = {
     'WEDNESDAY': 'blue',
     'THURSDAY': 'black',
     'FRIDAY': 'orange',
-    'SATURDAY': 'yellow',
-    'SUNDAY': 'crimson',
+    'SATURDAY': 'violet',
+    'SUNDAY': 'green',
 };
 
-export const DEFAULT_MIN_DATE = '01/Jan/20';
+export const DEFAULT_MIN_DATE = '01/Jan/19';
 export const DEFAULT_MIN_DATE_LIMIT = '01/Jan/2016';
 export const DEFAULT_MAX_DATE = '31/Dec/2020';
 
@@ -332,6 +333,6 @@ export const HEATMAP = [
     'rgb(240,15,0)',
     'rgb(245,10,0)',
     'rgb(250,5,0)',
-    'rgb(255,0,0)',
+    'rgb(252,2,0)',
     'rgb(255,0,0)',
 ];

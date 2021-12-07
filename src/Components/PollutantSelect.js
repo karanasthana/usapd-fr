@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import Select from 'react-select'
+import Select from 'react-select';
 import { POLLUTANTS } from '../Utils/constants';
 
 export default function PollutantSelect(props) {
