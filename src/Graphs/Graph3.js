@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import _ from "lodash";
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 import CustomCalendar from "../Components/CustomCalendar";
 import CustomLoader from "../Components/CustomLoader";
 import CustomTitle from "../Components/CustomTitle";
@@ -33,8 +33,8 @@ export default function Graph3(props) {
                     label: res.pollutant,
                     data: res.pollutant_data.data,
                     borderColor: POLLUTANT_COLOR_MAP[res.pollutant],
-                    backgroundColor: '#FFF',
-                    yAxisID: res.pollutant,
+                    backgroundColor: POLLUTANT_COLOR_MAP[res.pollutant],
+                    // yAxisID: res.pollutant,
                 }
             });
 
@@ -92,7 +92,23 @@ export default function Graph3(props) {
     const onEndDateChanged = (endDate) => {
         setEndDate(getStringDate(endDate))
     };
-    
+    const options = {
+        plugins: {
+          title: {
+            display: true,
+            text: 'Chart.js Bar Chart - Stacked',
+          },
+        },
+        responsive: true,
+        scales: {
+          x: {
+            stacked: true,
+          },
+          y: {
+            stacked: true,
+          },
+        },
+      };
     return (
         <>
             <CustomTitle title={props.title} />
@@ -116,7 +132,7 @@ export default function Graph3(props) {
 
                     {
                         apiFinished ? 
-                        <Line data={finalData} style={{ maxHeight: '70vh' }} /> : 
+                        <Bar data={finalData} style={{ maxHeight: '70vh' }} options={options} /> : 
                         <CustomLoader />
                     }
                 </div>

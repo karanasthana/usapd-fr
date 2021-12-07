@@ -7,7 +7,7 @@ import CustomLoader from "../Components/CustomLoader";
 import CustomTitle from "../Components/CustomTitle";
 import StateSelect from "../Components/stateSelect";
 import { DEFAULT_MAX_DATE, DEFAULT_MIN_DATE, POLLUTANT_COLOR_MAP } from "../Utils/constants";
-import { getStringDate } from "../Utils/utils";
+import { getMonthName, getStringDate } from "../Utils/utils";
 import { API_VERSION, BASE_URL, QUERY4, PROTOCOL } from '../Utils/constants';
 import './graph-styles.css';
 import PollutantSelect from "../Components/PollutantSelect";
@@ -66,10 +66,11 @@ export default function Graph2(props) {
         .then(response => {
             let responseData = response.data;
             let allLabels = _.map(responseData, (val) => {
-                return `${val.TIMELINE}`;
+                let month = val.MONTH;
+                month = getMonthName(month);
+                return `${month} ${val.YEAR}`;
             });
             
-
             let allGroupedValues = _.groupBy(responseData, 'STATE');
             let allStates = _.uniq(_.map(responseData, 'STATE'));
             let allResults = _.map(allStates, state => {
