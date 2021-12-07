@@ -15,7 +15,7 @@ export default function SignupPage(props) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [userState, setUserState] = useState('Florida');
+    const [userState, setUserState] = useState('12');
     const [isSigningUp, setIsSigningUp] = useState(false);
 
     const captureDetailsAndSignup = () => {

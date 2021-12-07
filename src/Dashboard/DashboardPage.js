@@ -30,6 +30,17 @@ export default function DashboardPage(props) {
                     </div>
                 </div>
 
+                {/* Compare population growth to pollution growth */}
+                <div className='col-md-12 g6'>
+                    <div className='tile-2' onClick={() => {props.history.push('/trend/:graph7')}}>
+                        <Image src={graph7} height={'200px'} width={'250px'}/>
+                        <div className='graph-details' style={{ flexGrow: 1, justifyContent: 'start', marginLeft: '20px', textAlign: 'start', alignItems: 'start' }}>
+                            <p className="graph-title">{getGraphTitleFromId('graph7')} </p>
+                            <p className='graph-desc'>{getGraphDescFromId('graph7')}</p>
+                        </div>
+                    </div>
+                </div>
+
                 {/* Compare states */}
                 <div className='col-md-12 g4'>
                     <div className='tile-2' onClick={() => {props.history.push('/trend/:graph4')}}>
@@ -59,17 +70,6 @@ export default function DashboardPage(props) {
                         <div className='graph-details' style={{ flexGrow: 1, justifyContent: 'start', marginLeft: '20px', textAlign: 'start', alignItems: 'start' }}>
                             <p className="graph-title">{getGraphTitleFromId('graph2')} </p>
                             <p className='graph-desc'>{getGraphDescFromId('graph2')}</p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Compare population growth to pollution growth */}
-                <div className='col-md-12 g6'>
-                    <div className='tile-2' onClick={() => {props.history.push('/trend/:graph7')}}>
-                        <Image src={graph7} height={'200px'} width={'250px'}/>
-                        <div className='graph-details' style={{ flexGrow: 1, justifyContent: 'start', marginLeft: '20px', textAlign: 'start', alignItems: 'start' }}>
-                            <p className="graph-title">{getGraphTitleFromId('graph7')} </p>
-                            <p className='graph-desc'>{getGraphDescFromId('graph7')}</p>
                         </div>
                     </div>
                 </div>

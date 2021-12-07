@@ -63,11 +63,20 @@ export default function Graph3(props) {
         .then(response => {
             let responseData = response.data;
             let allLabels = _.map(responseData, (val) => {
+                if (val.MAX_HOUR === 0) {
+                    return '';
+                }
                 return `${val.YEAR} Hr${val.MAX_HOUR}`;
             });
+            allLabels = _.compact(allLabels);
+
             let allValues = _.map(responseData, (val) => {
+                if (val.MAX_HOUR === 0) {
+                    return '';
+                }
                 return `${val.COUNT}`;
             });
+            allValues = _.compact(allValues);
             return {
                 pollutant: pollutant,
                 pollutant_data: {

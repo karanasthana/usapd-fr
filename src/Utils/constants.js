@@ -4,7 +4,7 @@ export const API_VERSION = 'api/v1/';
 
 // API End-points
 export const LOGIN = '/user/login/';
-export const SIGNUP = '/user/signup/';
+export const SIGNUP = 'user/signup/';
 export const QUERY1 = 'query1/getData';
 export const QUERY2 = 'query2/getData';
 export const QUERY3 = 'query3/getData';
@@ -194,16 +194,16 @@ export const GRAPH_ID_DESC_MAP = {
 };
 
 export const POLLUTANTS = [{
-    label: 'Sulfur Dioxide (SO2)',
+    label: 'Sulfur Dioxide (SO2) (ppm)',
     value: 'SO2'
 }, {
-    label: 'Ozone (O3)',
+    label: 'Ozone (O3) (ppm)',
     value: 'Ozone'
 }, {
-    label: 'Nitrogen Dioxide (NO2)',
+    label: 'Nitrogen Dioxide (NO2) (ppm)',
     value: 'NO2'
 }, {
-    label: 'Carbon Monoxide (CO)',
+    label: 'Carbon Monoxide (CO) (ppm)',
     value: 'CO'
 }]
 
