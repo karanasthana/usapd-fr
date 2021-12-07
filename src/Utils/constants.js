@@ -184,13 +184,13 @@ export const GRAPH_ID_TITLE_MAP = {
 
 // Graph Descriptions
 export const GRAPH_ID_DESC_MAP = {
-    'graph1': 'Study how the levels of pollutants has varied over the seasons (Spring, Summer, Fall, Winter) over a given time period.',
-    'graph2': 'Study the trend: how average pollutant levels over different days of the week, have changed over the last 5 year period.',
+    'graph1': 'Study how the levels of different pollutants has varied over the seasons (Spring, Summer, Fall, Winter) over a given time period. Plan your vacations better, to catch the magnificent views of a state during its expected least polluted season as per previous trends. ',
+    'graph2': 'Study the trend of how the average pollutant levels change as the week progresses, over a 5 year period. Choose the least polluted day to go on a hike with a friend or a loved one.',
     // add that what are these (wrt sites in the state)
-    'graph3': 'Study the trend: which hour of the day, on an avergage, had the highest level of the pollutant over a selected time period',
-    'graph4': 'Compare levels of a single pollutant between between multiple (upto 4) states over a given time period.',
-    'graph5': 'Study the number of days, in a state, where the AQI level was higher than its recommended safe value.',
-    'graph7': 'Study the trend: Has the change in population of a state, resulted in consequent changes in the pollution levels for that state.'
+    'graph3': 'Study the trend of which hour of the day, on an average, had the highest level of the pollutant over a selected time period. Plan your daily commute or your jogs better, to avoid pollution when it is relatively unsafe. ',
+    'graph4': "Compare levels of a single pollutant between multiple (upto 4) states over a given time period. Check if you're sensitive to a specific pollutant before traveling or migrating to a state.",
+    'graph5': 'Study the number of days, in a state, where the AQI level was higher than its recommended safe value. Check and take caution if you live in a state that consistently breaches the safe level of pollutants in the air.',
+    'graph7': "Study the trend if the change in the population of a state resulted in a corresponding change in the pollution levels for that state. If you're a researcher or if you're just inquisitive about the effect of population changes on the pollution in a state, this one's for you."
 };
 
 export const POLLUTANTS = [{
