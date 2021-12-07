@@ -78,7 +78,7 @@ export default function Graph1(props) {
             let responseData = response.data;
             let allLabels = _.map(responseData, (val) => {
                 let season = val.SEASON;
-                season = season.substring(1);
+                // season = season.substring(1);
                 return `${season} ${val.YEAR}`;
             });
             let allValues = _.map(responseData, (val) => {

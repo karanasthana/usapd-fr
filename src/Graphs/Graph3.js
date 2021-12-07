@@ -141,7 +141,10 @@ export default function Graph3(props) {
 
                     {
                         apiFinished ? 
-                        <Bar data={finalData} style={{ maxHeight: '70vh' }} options={options} /> : 
+                        <div>
+                            <Bar data={finalData} style={{ maxHeight: '70vh' }} options={options} />
+                            <p>* on the y-axis, we have the number of sites where the hour had maximum pollution throughout the day.</p>
+                        </div> : 
                         <CustomLoader />
                     }
                 </div>
