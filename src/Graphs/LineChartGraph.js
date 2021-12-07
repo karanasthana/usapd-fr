@@ -77,7 +77,6 @@ export default class LineChartGraph extends Component {
   }
 
   render = () => {
-    debugger;
     return <>
       <div className='header'>
         <h1 className='title'>{this.props.title}</h1>

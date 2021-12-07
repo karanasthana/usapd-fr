@@ -30,7 +30,6 @@ export default function Graph2(props) {
             makeApiCall(pollutant)
         ])
         .then(result => {
-            debugger;
             result = result[0];
             let allDatasets = _.map(result, (res, ndx) => {
                 return {
@@ -56,7 +55,6 @@ export default function Graph2(props) {
         })
         .catch(e => {
             // alert(e);
-            debugger;
             setApiFinished(true);
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,11 +68,9 @@ export default function Graph2(props) {
             let allLabels = _.map(responseData, (val) => {
                 return `${val.TIMELINE}`;
             });
-            debugger;
             
 
             let allGroupedValues = _.groupBy(responseData, 'STATE');
-            debugger;
             let allStates = _.uniq(_.map(responseData, 'STATE'));
             let allResults = _.map(allStates, state => {
                 let allValues = _.map(allGroupedValues[state], (val) => {

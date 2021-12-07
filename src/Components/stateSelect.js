@@ -10,7 +10,6 @@ export default function StateSelect(props) {
             return;
         }
         if (props.multi) {
-            debugger;
             let allStates = _.map(selectedOptions, opt => opt.label);
             props.handleChange(_.join(allStates, ','));
         } else {
