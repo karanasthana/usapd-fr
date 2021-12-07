@@ -12,6 +12,9 @@ export default function CustomCalendar(props) {
         if (_.isUndefined(props.onChange)) {
             return;
         }
+        if (props.yearPicker && props.getEndDate) {
+            date = new Date(date.getFullYear(), 11, 31)
+        }
         props.onChange(date);
     }
 
@@ -24,7 +27,7 @@ export default function CustomCalendar(props) {
                 dayPlaceholder={'DD'}
                 monthPlaceholder={'MM'}
                 yearPlaceholder={'YYYY'}
-                maxDetail={props.monthPicker ? 'year' : 'month'}
+                maxDetail={props.monthPicker ? 'year' : (props.yearPicker ? 'decade' : 'month')}
                 required={true}
                 value={myDate}
                 clearIcon={null}

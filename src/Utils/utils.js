@@ -1,7 +1,13 @@
-import { GRAPH_ID_TITLE_MAP } from "./constants"
+import { GRAPH_ID_DESC_MAP, GRAPH_ID_TITLE_MAP } from "./constants"
 
 export const getGraphTitleFromId = (graphId) => {
     let map = GRAPH_ID_TITLE_MAP;
+    
+    return map[graphId];
+};
+
+export const getGraphDescFromId = (graphId) => {
+    let map = GRAPH_ID_DESC_MAP;
     
     return map[graphId];
 };

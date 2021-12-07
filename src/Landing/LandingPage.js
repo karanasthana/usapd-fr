@@ -36,16 +36,17 @@ export default function LandingPage(props) {
     return (
         <div className='page-container'>
             <div className='page-header'>
-                <h1>WELCOME TO USAPD!</h1>
+                <h1>WELCOME TO US AIR POLLUTION DASHBOARD</h1>
                 <img src={'https://cdn.freelogovectors.net/wp-content/uploads/2018/08/uf-university-of-florida.png'} alt="UF" height={60} width={100} />
             </div>
+            <div className='custom-map-container'>
+                <CustomUSAMap />
+            </div>
+
             <div className='buttons-container'>
                 <Button onClick={gotoLogin} size={'lg'}>Login</Button>
                 <Button onClick={gotoSignup} size={'lg'}>Signup</Button>
                 <Button onClick={gotoDashboard} size={'lg'}>Continue as Guest</Button>
-            </div>
-            <div className='custom-map-container'>
-                <CustomUSAMap />
             </div>
             <div className='text-container'>
                 <p>

@@ -100,12 +100,12 @@ export default function Graph3(props) {
                 <div className='graph-container'>
                     <div className='dynamics-container'>
                         <div className='selection-container'>
-                            <div className="selection-title">Start Date:</div>
-                            <CustomCalendar onChange={onStartDateChanged} value={DEFAULT_MIN_DATE} />
+                            <div className="selection-title">Start Year:</div>
+                            <CustomCalendar onChange={onStartDateChanged} value={DEFAULT_MIN_DATE} yearPicker={true} />
                         </div>
                         <div className='selection-container'>
-                            <div className="selection-title">End Date:</div>
-                            <CustomCalendar onChange={onEndDateChanged} value={DEFAULT_MAX_DATE} />
+                            <div className="selection-title">End Year:</div>
+                            <CustomCalendar onChange={onEndDateChanged} value={DEFAULT_MAX_DATE} yearPicker={true} getEndDate={true} />
                         </div>
 
                         <div className='selection-container'>

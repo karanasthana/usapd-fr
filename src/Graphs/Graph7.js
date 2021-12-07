@@ -2,33 +2,27 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import _ from "lodash";
 import { Line } from "react-chartjs-2";
-import CustomCalendar from "../Components/CustomCalendar";
 import CustomLoader from "../Components/CustomLoader";
 import CustomTitle from "../Components/CustomTitle";
 import StateSelect from "../Components/stateSelect";
-import { DEFAULT_MAX_DATE, DEFAULT_MIN_DATE, POLLUTANT_COLOR_MAP } from "../Utils/constants";
-import { getStringDate } from "../Utils/utils";
-import { API_VERSION, BASE_URL, QUERY4, PROTOCOL } from '../Utils/constants';
+import { POLLUTANT_COLOR_MAP } from "../Utils/constants";
+import { API_VERSION, BASE_URL, QUERY7, PROTOCOL } from '../Utils/constants';
 import './graph-styles.css';
-import PollutantSelect from "../Components/PollutantSelect";
 
-export default function Graph2(props) {
+export default function Graph7(props) {
 
     const [apiFinished, setApiFinished] = useState(false);
     const [finalData, setFinalData] = useState({});
-    const [userState, setUserState] = useState(props.userState ? props.userState : ['Florida']);
-    const [startDate, setStartDate] = useState(DEFAULT_MIN_DATE);
-    const [endDate, setEndDate] = useState(DEFAULT_MAX_DATE);
-    const [pollutant, setPollutant] = useState('NO2');
-    const onPollutantChanged = pollutant => { setPollutant(pollutant.value) };
+    const [userState, setUserState] = useState(props.userState ? props.userState : 'Florida');
+    // const [pollutant, setPollutant] = useState({});
     
     useEffect(() => {
         setApiFinished(false);
         Promise.all([
-            makeApiCall(pollutant),
-            // makeApiCall('NO2'),
-            // makeApiCall('CO'),
-            // makeApiCall('Ozone')
+            makeApiCall('SO2'),
+            makeApiCall('NO2'),
+            makeApiCall('CO'),
+            makeApiCall('Ozone')
         ])
         .then(result => {
             // setPollutant(result.pollutant);
@@ -59,15 +53,15 @@ export default function Graph2(props) {
             // alert(e);
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [userState, startDate, endDate]);
+    }, [userState]);
 
     let makeApiCall = pollutant => {
-        const graph2Url = `${PROTOCOL}${BASE_URL}${API_VERSION}${QUERY4}?state_list=${userState}&pollutant=${pollutant}&start=${startDate}&end=${endDate}`;
-        return axios.get(`${graph2Url}`)
+        const graph7Url = `${PROTOCOL}${BASE_URL}${API_VERSION}${QUERY7}?state=${userState}`;
+        return axios.get(`${graph7Url}`)
         .then(response => {
             let responseData = response.data;
             let allLabels = _.map(responseData, (val) => {
-                return `${val.TIMELINE}`;
+                return `${val.SEASON} ${val.YEAR}`;
             });
             let allValues = _.map(responseData, (val) => {
                 return `${val.MEANVALUE}`;
@@ -88,14 +82,6 @@ export default function Graph2(props) {
     const onStateChanged = (e) => {
         setUserState(e.label);
     };
-
-    const onStartDateChanged = (startDate) => {
-        setStartDate(getStringDate(startDate));
-    };
-    
-    const onEndDateChanged = (endDate) => {
-        setEndDate(getStringDate(endDate))
-    };
     
     return (
         <>
@@ -104,21 +90,8 @@ export default function Graph2(props) {
                 <div className='graph-container'>
                     <div className='dynamics-container'>
                         <div className='selection-container'>
-                            <div className="selection-title">Start Date:</div>
-                            <CustomCalendar onChange={onStartDateChanged} value={DEFAULT_MIN_DATE} />
-                        </div>
-                        <div className='selection-container'>
-                            <div className="selection-title">End Date:</div>
-                            <CustomCalendar onChange={onEndDateChanged} value={DEFAULT_MAX_DATE} />
-                        </div>
-
-                        <div className='selection-container'>
                             <div className="selection-title">State:</div>
-                            <StateSelect handleChange={onStateChanged} multi={true} />
-                        </div>
-                        <div className='selection-container'>
-                            <div className="selection-title">Pollutant:</div>
-                            <PollutantSelect handleChange={onPollutantChanged} />
+                            <StateSelect handleChange={onStateChanged} />
                         </div>
                     </div>
 

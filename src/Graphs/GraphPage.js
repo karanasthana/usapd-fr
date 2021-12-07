@@ -5,6 +5,7 @@ import Graph2 from "./Graph2";
 import Graph3 from "./Graph3";
 import Graph4 from "./Graph4";
 import Graph5 from "./Graph5";
+import Graph7 from "./Graph7";
 
 export default function GraphPage(props) {
 
@@ -56,6 +57,13 @@ export default function GraphPage(props) {
             break;
         case 'graph5':
             graphComponent = (<Graph5
+                title = {title}
+                userState = {userState}
+                pollutant = {pollutant}
+            />);
+            break;
+        case 'graph7':
+            graphComponent = (<Graph7
                 title = {title}
                 userState = {userState}
                 pollutant = {pollutant}

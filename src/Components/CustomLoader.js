@@ -6,7 +6,7 @@ export default class CustomLoader extends React.Component {
   //other logic
   render() {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '50vh' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: this.props.inline ? 'none' : '50vh' }}>
         <Loader type={this.props.type ? this.props.type : "Audio"} color={this.props.color || "#00BFFF"} height={80} width={80} />
       </div>
     );

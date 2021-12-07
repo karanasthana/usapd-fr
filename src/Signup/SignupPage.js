@@ -8,19 +8,23 @@ import { API_VERSION, BASE_URL, SIGNUP, PROTOCOL } from '../Utils/constants';
 import { EMAIL_MISSING_ERROR, PWD_MISSING_ERROR, STATE_MISSING_ERROR } from '../Utils/string_constants';
 import './signup.css';
 import StateSelect from '../Components/stateSelect';
+import CustomLoader from '../Components/CustomLoader';
 
 export default function SignupPage(props) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [userState, setUserState] = useState('Florida');
+    const [isSigningUp, setIsSigningUp] = useState(false);
 
     const captureDetailsAndSignup = () => {
         console.log('Email --> ' + email);
         console.log('Pwd --> ' + password);
         console.log('User State --> ' + userState);
+        setIsSigningUp(true);
 
         if (!validate()) {
+            setIsSigningUp(false);
             return;
         }
 
@@ -34,9 +38,11 @@ export default function SignupPage(props) {
             .then(userResponse => {
                 console.log(JSON.stringify(userResponse));
                 props.history.replace('/dashboard');
+                setIsSigningUp(false);
             })
             .catch(e => {
-                console.error(e);
+                setIsSigningUp(false);
+                alert(e);
             });
     };
 
@@ -114,5 +120,12 @@ export default function SignupPage(props) {
                     </div>
                 </div>
             </div>
+            {
+                isSigningUp ?
+                <div style={{ zIndex: 2000, position: 'absolute', right: '40vw' }}> 
+                    <CustomLoader />
+                </div>:
+                null
+            }
         </div>);
 }

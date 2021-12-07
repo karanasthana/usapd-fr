@@ -9,7 +9,12 @@ export default function StateSelect(props) {
         if (_.isUndefined(props.handleChange)) {
             return;
         }
-        props.handleChange(selectedOptions)
+        if (props.multi) {
+            let allStates = _.map(selectedOptions, opt => opt.label);
+            props.handleChange(_.join(allStates, ','));
+        } else {
+            props.handleChange(selectedOptions)
+        }
     }
     let stateVal = '';
     let defaultValue = global.user?.userState;
@@ -23,7 +28,6 @@ export default function StateSelect(props) {
 
     const Menu = props => {
         const optionSelectedLength = props.getValue().length;
-        debugger;
         return (
             <components.Menu {...props}>
             {optionSelectedLength < 4 ? (
@@ -37,6 +41,8 @@ export default function StateSelect(props) {
 
     const isValidNewOption = (inputValue, selectValue) =>
             inputValue.length > 0 && selectValue.length < 5;
+    let defaultStateList = [];
+    defaultStateList.push(stateVal);
 
     return (
         props.multi ? 
@@ -47,6 +53,7 @@ export default function StateSelect(props) {
                 isValidNewOption={isValidNewOption}
                 options={STATES}
                 onChange={onChange}
+                defaultValue={props.defaultValue ? props.defaultValue : defaultStateList}
             />
         </div> :
         <div style={{ minWidth: '160px' }}>
