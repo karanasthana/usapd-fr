@@ -35,7 +35,7 @@ export default function LoginPage(props) {
             })
             .catch(e => {
                 console.error(e);
-                alert(e);
+                alert("Error logging in, please check your credentials and try again");
                 setIsLogging(false);
             });
     };
