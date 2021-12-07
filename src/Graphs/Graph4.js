@@ -16,7 +16,7 @@ export default function Graph2(props) {
 
     const [apiFinished, setApiFinished] = useState(false);
     const [finalData, setFinalData] = useState({});
-    const [userState, setUserState] = useState(props.userState ? props.userState : 'Florida');
+    const [userState, setUserState] = useState(props.userState ? props.userState : global.userState ? global.userState : 'Florida');
     const [startDate, setStartDate] = useState(DEFAULT_MIN_DATE);
     const [endDate, setEndDate] = useState(DEFAULT_MAX_DATE);
     const [pollutant, setPollutant] = useState('NO2');
