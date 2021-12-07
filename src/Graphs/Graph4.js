@@ -16,29 +16,27 @@ export default function Graph2(props) {
 
     const [apiFinished, setApiFinished] = useState(false);
     const [finalData, setFinalData] = useState({});
-    const [userState, setUserState] = useState(props.userState ? props.userState : ['Florida']);
+    const [userState, setUserState] = useState(props.userState ? props.userState : 'Florida');
     const [startDate, setStartDate] = useState(DEFAULT_MIN_DATE);
     const [endDate, setEndDate] = useState(DEFAULT_MAX_DATE);
     const [pollutant, setPollutant] = useState('NO2');
     const onPollutantChanged = pollutant => { setPollutant(pollutant.value) };
+    const COLOR_MAP = ['blue', 'orange', 'brown', 'green'];
     
     useEffect(() => {
         setApiFinished(false);
+
         Promise.all([
-            makeApiCall(pollutant),
-            // makeApiCall('NO2'),
-            // makeApiCall('CO'),
-            // makeApiCall('Ozone')
+            makeApiCall(pollutant)
         ])
         .then(result => {
-            // setPollutant(result.pollutant);
-            let allDatasets = _.map(result, res => {
+            result = result[0];
+            let allDatasets = _.map(result, (res, ndx) => {
                 return {
-                    label: res.pollutant,
+                    label: res.state,
                     data: res.pollutant_data.data,
-                    borderColor: POLLUTANT_COLOR_MAP[res.pollutant],
-                    backgroundColor: '#FFF',
-                    // yAxisID: res.pollutant
+                    borderColor: COLOR_MAP[ndx],
+                    backgroundColor: '#FFF'
                 }
             });
 
@@ -57,9 +55,10 @@ export default function Graph2(props) {
         })
         .catch(e => {
             // alert(e);
+            setApiFinished(true);
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [userState, startDate, endDate]);
+    }, [userState, pollutant, startDate, endDate]);
 
     let makeApiCall = pollutant => {
         const graph2Url = `${PROTOCOL}${BASE_URL}${API_VERSION}${QUERY4}?state_list=${userState}&pollutant=${pollutant}&start=${startDate}&end=${endDate}`;
@@ -69,16 +68,24 @@ export default function Graph2(props) {
             let allLabels = _.map(responseData, (val) => {
                 return `${val.TIMELINE}`;
             });
-            let allValues = _.map(responseData, (val) => {
-                return `${val.MEANVALUE}`;
-            });
-            return {
-                pollutant: pollutant,
-                pollutant_data: {
-                    data: allValues,
-                    labels: allLabels
+            
+
+            let allGroupedValues = _.groupBy(responseData, 'STATE');
+            let allStates = _.uniq(_.map(responseData, 'STATE'));
+            let allResults = _.map(allStates, state => {
+                let allValues = _.map(allGroupedValues[state], (val) => {
+                    return `${val.MEANVALUE}`;
+                });
+                return {
+                    pollutant: pollutant,
+                    state: state,
+                    pollutant_data: {
+                        data: allValues,
+                        labels: allLabels
+                    }
                 }
-            };
+            });
+            return allResults;
         })
         .catch(e => {
             // alert('Something went wrong! ' + e);
@@ -86,7 +93,7 @@ export default function Graph2(props) {
     }
 
     const onStateChanged = (e) => {
-        setUserState(e.label);
+        setUserState(e);
     };
 
     const onStartDateChanged = (startDate) => {

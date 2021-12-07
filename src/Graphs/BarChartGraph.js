@@ -91,7 +91,6 @@ export default class BarChartGraph extends Component {
   }
 
   render = () => {
-    debugger;
     return <>
       <div className='header'>
         <h1 className='title'>{this.props.title}</h1>
